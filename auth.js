@@ -7,7 +7,7 @@
     if (window.location.protocol === 'file:' || !window.location.origin || window.location.origin === 'null') {
       return 'http://localhost:5001/api/auth';
     }
-    if (window.location.port && window.location.port !== '5001') {
+    if ((window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') && window.location.port && window.location.port !== '5001') {
       return 'http://localhost:5001/api/auth';
     }
     return '/api/auth';

@@ -7,9 +7,16 @@
 (function () {
   'use strict';
 
-  const API_BASE = (window.location.protocol === 'http:' && window.location.port === '5001')
-    ? '/api/auth'
-    : 'http://localhost:5001/api/auth';
+  const API_BASE = (function() {
+    if (typeof window === 'undefined') return '/api/auth';
+    if (window.location.protocol === 'file:' || !window.location.origin || window.location.origin === 'null') {
+      return 'http://localhost:5001/api/auth';
+    }
+    if ((window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') && window.location.port && window.location.port !== '5001') {
+      return 'http://localhost:5001/api/auth';
+    }
+    return '/api/auth';
+  })();
 
   // Canonical Service Mapping helper
   const TITLE_MAP = {
@@ -1086,8 +1093,8 @@
       const payload = {
         serviceId,
         serviceName,
-        workerId: worker ? worker.id : null,
-        workerName: worker ? worker.name : null,
+        workerId: worker ? (worker._id || worker.id) : null,
+        workerName: worker ? (worker.name || worker.fullName || null) : null,
         category: worker ? (worker.skillCategory || worker.specificSkill) : (serviceName || 'Custom Trade'),
         scheduledDate,
         scheduledTime,

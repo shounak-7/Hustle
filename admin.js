@@ -46,9 +46,16 @@
   const disputeModalBody = document.querySelector('#admin-dispute-modal-body');
   const btnCloseDisputeModal = document.querySelector('#btn-close-dispute-modal');
 
-  const API_AUTH = (window.location.protocol === 'http:' && window.location.port === '5001')
-    ? '/api/auth'
-    : 'http://localhost:5001/api/auth';
+  const API_AUTH = (function() {
+    if (typeof window === 'undefined') return '/api/auth';
+    if (window.location.protocol === 'file:' || !window.location.origin || window.location.origin === 'null') {
+      return 'http://localhost:5001/api/auth';
+    }
+    if ((window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') && window.location.port && window.location.port !== '5001') {
+      return 'http://localhost:5001/api/auth';
+    }
+    return '/api/auth';
+  })();
 
   let activeAdminToken = null;
   let activeAdminUser = null;

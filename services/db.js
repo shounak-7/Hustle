@@ -1477,12 +1477,14 @@ async function findBookingsByWorker(workerId, workerSkill = '', workerCity = '',
 
   if (isMongoReady) {
     try {
-      const records = await Booking.find({
-        $or: [
-          { workerId: wId },
-          { workerId: null }
-        ]
-      }).sort({ createdAt: -1 });
+      const orConditions = [
+        { workerId: wId },
+        { workerId: null }
+      ];
+      if (wName) {
+        orConditions.push({ workerName: new RegExp(`^${wName.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`, 'i') });
+      }
+      const records = await Booking.find({ $or: orConditions }).sort({ createdAt: -1 });
 
       return records.filter(b => {
         if (b.workerId && String(b.workerId) === wId) return true;
