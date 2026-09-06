@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Authentication — Hustle</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="auth.css" />
+  </head>
+  <body>
+    <main class="auth-shell">
+      <header class="auth-topbar">
+        <a class="brand" href="index.html" aria-label="Hustle home">
+          <span class="brand-mark">h</span>hustle
+        </a>
+        <a class="back-link" href="index.html">← Back to Marketplace</a>
+      </header>
+
+      <div class="auth-layout">
+        <!-- Left Side: Role Selection & Contextual Information -->
+        <section class="auth-intro">
+          <p class="eyebrow" id="intro-eyebrow">CHOOSE YOUR PORTAL</p>
+          <h1 id="intro-title">Good work starts with the right <em>path.</em></h1>
+          <p id="intro-desc">Choose whether you want to book reliable local services or offer your specialized skills and earn on your schedule.</p>
+
+          <div class="role-list" role="radiogroup" aria-label="Select role">
+            <!-- Role 1: Customer -->
+            <button type="button" class="role-button" data-role="customer" aria-checked="false">
+              <span class="role-icon customer-icon">⌂</span>
+              <div class="role-text">
+                <div class="role-header-row">
+                  <b>I'm looking for help</b>
+                  <span class="role-badge customer-badge">CUSTOMER</span>
+                </div>
+                <small>Book trusted, verified local services &amp; experts</small>
+              </div>
+            </button>
+
+            <!-- Role 2: Gig Worker -->
+            <button type="button" class="role-button" data-role="worker" aria-checked="false">
+              <span class="role-icon worker-icon">✦</span>
+              <div class="role-text">
+                <div class="role-header-row">
+                  <b>I want to offer services</b>
+                  <span class="role-badge worker-badge">GIG WORKER</span>
+                </div>
+                <small>Earn effortlessly, build your business &amp; same-day pay</small>
+              </div>
+            </button>
+
+            <!-- Role 3: Business (Disabled / Coming Soon) -->
+            <div class="role-button role-disabled" data-role="business" aria-disabled="true" title="Hustle for Business is launching soon">
+              <span class="role-icon business-icon">▦</span>
+              <div class="role-text">
+                <div class="role-header-row">
+                  <b>I'm here for my business</b>
+                  <span class="role-badge coming-soon-badge">COMING SOON</span>
+                </div>
+                <small>Corporate workplace &amp; facility solutions — launching soon</small>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dynamic Role Highlights & Perks -->
+          <div class="role-highlights" id="role-highlights">
+            <div class="highlight-item">
+              <span class="hl-check">✓</span>
+              <div>
+                <strong id="hl-title-1">Verified Local Experts</strong>
+                <small id="hl-desc-1">Government ID checked and vetted professionals</small>
+              </div>
+            </div>
+            <div class="highlight-item">
+              <span class="hl-check">⚡</span>
+              <div>
+                <strong id="hl-title-2">Transparent Upfront Pricing</strong>
+                <small id="hl-desc-2">No hidden commissions, surge fees, or guesswork</small>
+              </div>
+            </div>
+            <div class="highlight-item">
+              <span class="hl-check">✦</span>
+              <div>
+                <strong id="hl-title-3">Hustle Trust Guarantee</strong>
+                <small id="hl-desc-3">Secure escrow protection with same-day resolution</small>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Right Side: Auth Card & Forms -->
+        <section class="auth-card" id="auth-card">
+          <!-- Role Context Banner -->
+          <div class="auth-role-banner" id="auth-role-banner">
+            <span class="banner-pill" id="banner-pill">CUSTOMER PORTAL</span>
+            <span class="banner-hint" id="banner-hint">Create account or sign in to continue</span>
+          </div>
+
+          <!-- Active Session Notice (Shown when already logged in) -->
+          <div class="active-session-box" id="active-session-box" hidden>
+            <div class="session-badge">ACTIVE SESSION DETECTED</div>
+            <p class="session-welcome">You are currently signed in as <strong id="session-user-name">User</strong></p>
+            <p class="session-meta" id="session-user-meta">customer@hustle.local · Verified Customer</p>
+            <div class="session-actions">
+              <a href="index.html" class="submit session-btn-primary" id="btn-session-continue">Go to Marketplace →</a>
+              <button type="button" class="back-link session-btn-logout" id="btn-session-logout">Log Out / Switch Account</button>
+            </div>
+            <div class="auth-divider" style="margin: 20px 0 10px;">
+              <span>or create/sign in to another account below</span>
+            </div>
+          </div>
+
+          <h2 id="form-title">Find the help you need.</h2>
+          <p id="form-help">Join Hustle to discover verified local professionals right in your neighborhood.</p>
+
+          <!-- Mode Switcher Tabs (Create account vs Sign in) -->
+          <div class="mode-tabs">
+            <button type="button" class="mode-tab active" id="tab-signup">Create account</button>
+            <button type="button" class="mode-tab" id="tab-signin">Sign in</button>
+          </div>
+
+          <!-- Google Social Sign In Button -->
+          <button type="button" class="google-auth-btn" id="google-auth-btn">
+            <svg class="google-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17z"/>
+              <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.26v3.15C3.29 21.43 7.35 24 12 24z"/>
+              <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.26C.46 8.16 0 9.97 0 12s.46 3.84 1.26 5.42l4.02-3.15z"/>
+              <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.35 0 3.29 2.57 1.26 6.58l4.02 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/>
+            </svg>
+            <span id="google-auth-text">Continue with Google</span>
+          </button>
+
+          <div class="auth-divider">
+            <span>or continue with email &amp; phone</span>
+          </div>
+
+          <!-- The Main Form -->
+          <form id="auth-form" novalidate>
+            <input type="hidden" id="role" name="role" value="customer" />
+
+            <!-- Field: Full Name (Signup only) -->
+            <div class="form-group" id="group-name">
+              <label for="input-name">Full name <span class="req">*</span></label>
+              <input type="text" id="input-name" name="name" autocomplete="name" placeholder="e.g. Aditi Sharma" required />
+            </div>
+
+            <!-- Field: Email Address (Signup & Signin) -->
+            <div class="form-group" id="group-email">
+              <label for="input-email" id="label-email">Email address <span class="req">*</span></label>
+              <input type="email" id="input-email" name="email" autocomplete="email" placeholder="you@example.com" required />
+            </div>
+
+            <!-- Field: Phone Number (Signup only) -->
+            <div class="form-group" id="group-phone">
+              <label for="input-phone">Phone number <span class="req">*</span></label>
+              <div class="phone-input-wrap">
+                <span class="phone-prefix">🇮🇳 +91</span>
+                <input type="tel" id="input-phone" name="phone" autocomplete="tel" placeholder="98765 43210" pattern="[0-9]{10}" />
+              </div>
+            </div>
+
+            <!-- WORKER COMPULSORY FIELD: What skills do you have? -->
+            <div class="form-group worker-field" id="group-skills" hidden>
+              <label for="select-skill-category">What skills do you have? <span class="req">* (Compulsory)</span></label>
+              <select id="select-skill-category" name="skillCategory" class="form-select">
+                <option value="" disabled selected>Select primary skill category...</option>
+                <option value="Deep Home & Kitchen Cleaning">Deep Home &amp; Kitchen Cleaning</option>
+                <option value="Plumbing & Drainage Fixing">Plumbing &amp; Drainage Fixing</option>
+                <option value="Electrician & Wiring Repairs">Electrician &amp; Wiring Repairs</option>
+                <option value="Furniture Assembly & Handyman">Furniture Assembly &amp; Handyman</option>
+                <option value="Custom Carpentry & Woodwork">Custom Carpentry &amp; Woodwork</option>
+                <option value="AC, Fridge & Appliance Repair">AC, Fridge &amp; Appliance Repair</option>
+                <option value="Spa, Massage & Grooming">Spa, Massage &amp; Grooming</option>
+                <option value="Maths & Science Tutoring">Maths &amp; Science Tutoring</option>
+                <option value="Laptop & Wi-Fi Tech Support">Laptop &amp; Wi-Fi Tech Support</option>
+                <option value="Wall Painting & Waterproofing">Wall Painting &amp; Waterproofing</option>
+                <option value="Babysitting & Childcare">Babysitting &amp; Childcare</option>
+                <option value="Pet Grooming, Sitting & Dog Walking">Pet Grooming, Sitting &amp; Dog Walking</option>
+                <option value="Wardrobe & Home Organisation">Wardrobe &amp; Home Organisation</option>
+                <option value="Garden & Plant Care">Garden &amp; Plant Care</option>
+                <option value="Yoga & Fitness Coaching">Yoga &amp; Fitness Coaching</option>
+                <option value="Car & Two-Wheeler Care">Car &amp; Two-Wheeler Care</option>
+                <option value="Pest Control & Fumigation">Pest Control &amp; Fumigation</option>
+                <option value="Senior Companion & Support">Senior Companion &amp; Support</option>
+                <option value="Other">Other Specialized Skill</option>
+              </select>
+              <input type="text" id="input-specific-skill" name="specificSkill" placeholder="Specify your trade (e.g. Master Carpenter, High School Maths, AC Tech)" style="margin-top: 7px;" />
+            </div>
+
+            <!-- WORKER COMPULSORY FIELD: Years of Experience -->
+            <div class="form-group worker-field" id="group-experience" hidden>
+              <label for="select-experience">Years of experience <span class="req">* (Compulsory)</span></label>
+              <select id="select-experience" name="experience" class="form-select">
+                <option value="" disabled selected>Choose your experience level...</option>
+                <option value="Less than 1 year">Less than 1 year (Entry / Starting out)</option>
+                <option value="1–2 years">1–2 years (Working pro)</option>
+                <option value="3–5 years">3–5 years (Experienced specialist)</option>
+                <option value="5–10 years">5–10 years (Senior craftsman)</option>
+                <option value="10+ years">10+ years (Master pro)</option>
+              </select>
+            </div>
+
+            <!-- WORKER OPTIONAL FIELD: Upload Supporting Document -->
+            <div class="form-group worker-field" id="group-document" hidden>
+              <label>Supporting document <span class="opt">(Optional — accelerates verification)</span></label>
+              <div class="file-dropzone" id="file-dropzone" tabindex="0" role="button" aria-label="Upload document">
+                <input type="file" id="input-doc-file" name="documentFile" accept=".pdf,.jpg,.jpeg,.png" style="display:none" />
+                <div class="dropzone-content" id="dropzone-prompt">
+                  <span class="drop-icon">📄</span>
+                  <strong>Upload ID proof, trade certificate or resume</strong>
+                  <small>PDF, JPG, or PNG up to 10MB · Click to choose</small>
+                </div>
+                <div class="file-preview-card" id="file-preview" hidden>
+                  <span class="preview-icon">✓</span>
+                  <div class="preview-info">
+                    <strong id="preview-filename">document.pdf</strong>
+                    <small id="preview-filesize">Uploaded file ready</small>
+                  </div>
+                  <button type="button" class="remove-file-btn" id="btn-remove-file" aria-label="Remove document">✕</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- WORKER COMPULSORY FIELD: Working City -->
+            <div class="form-group worker-field" id="group-city" hidden>
+              <label for="select-worker-city">Working City <span class="req">* (Compulsory)</span></label>
+              <select id="select-worker-city" name="city" class="form-select">
+                <option value="" disabled selected>Select your city...</option>
+                <option value="Kolkata">Kolkata</option>
+                <option value="Bengaluru">Bengaluru</option>
+                <option value="Chennai">Chennai</option>
+                <option value="Mumbai">Mumbai</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Hyderabad">Hyderabad</option>
+                <option value="Ahmedabad">Ahmedabad</option>
+                <option value="Pune">Pune</option>
+                <option value="Other">Other (Type your city)</option>
+              </select>
+              <input type="text" id="input-custom-city" name="customCity" placeholder="Type your city name (e.g. Chandigarh, Jaipur, Kochi)" style="margin-top: 7px; display: none;" />
+            </div>
+
+            <!-- WORKER OPTIONAL FIELD: Preferred Locality / Area -->
+            <div class="form-group worker-field" id="group-area" hidden>
+              <label for="input-locality">Preferred work localities <span class="opt">(e.g. Salt Lake, Indiranagar, Bandra, Hauz Khas)</span></label>
+              <input type="text" id="input-locality" name="locality" placeholder="e.g. Salt Lake &amp; New Town, or Indiranagar" />
+            </div>
+
+            <!-- WORKER OPTIONAL FIELD: Short Bio / Craft Note -->
+            <div class="form-group worker-field" id="group-bio" hidden>
+              <label for="input-bio">About your craft &amp; background <span class="opt">(Optional)</span></label>
+              <textarea id="input-bio" name="bio" rows="2" placeholder="Tell customers what makes your service stand out..."></textarea>
+            </div>
+
+            <!-- Field: Password (Signup & Signin) -->
+            <div class="form-group" id="group-password">
+              <div class="label-row">
+                <label for="input-password" id="label-password">Password <span class="req">*</span></label>
+                <button type="button" class="forgot-link" id="btn-forgot-password" hidden>Forgot password?</button>
+              </div>
+              <div class="password-wrap">
+                <input type="password" id="input-password" name="password" autocomplete="new-password" minlength="6" placeholder="At least 6 characters" required />
+                <button type="button" class="pwd-toggle" id="btn-toggle-pwd" aria-label="Show password">👁</button>
+              </div>
+            </div>
+
+            <!-- Error message container -->
+            <div class="form-error" id="form-error" role="alert" hidden></div>
+
+            <!-- Submit Button -->
+            <button class="submit" type="submit" id="btn-submit">
+              <span id="submit-text">Create account</span> <b>→</b>
+            </button>
+
+            <!-- Switch Copy -->
+            <p class="switch-copy" id="switch-copy">
+              Already have an account? <button type="button" id="login-toggle">Sign in</button>
+            </p>
+          </form>
+
+          <p class="privacy">
+            By continuing, you agree to Hustle's <a href="terms.html">Terms &amp; Conditions</a> and <a href="terms.html#privacy">Privacy Policy</a>.
+          </p>
+        </section>
+      </div>
+    </main>
+
+    <!-- Forgot Password Modal Dialog -->
+    <div class="modal-overlay" id="forgot-modal" hidden role="dialog" aria-modal="true" aria-labelledby="forgot-title">
+      <div class="modal-card">
+        <button type="button" class="modal-close" id="btn-close-forgot" aria-label="Close dialog">✕</button>
+        <span class="modal-badge">ACCOUNT RECOVERY</span>
+        <h3 id="forgot-title">Reset your password</h3>
+        <p id="forgot-subtitle">Enter your registered email or phone number to receive a verification OTP.</p>
+
+        <form id="forgot-form">
+          <div class="modal-alert" id="forgot-alert" hidden></div>
+
+          <!-- Step 1: Target identifier -->
+          <div class="form-group" id="forgot-step-1">
+            <label for="input-forgot-target">Registered email or phone number</label>
+            <input type="text" id="input-forgot-target" placeholder="you@example.com or 9876543210" required />
+            <button type="button" class="submit modal-submit" id="btn-request-otp" style="margin-top:12px">
+              Send Verification OTP <b>→</b>
+            </button>
+          </div>
+
+          <!-- Step 2: Enter OTP & New Password -->
+          <div id="forgot-step-2" hidden>
+            <div class="otp-banner" id="otp-demo-banner" style="background:#fef5ea;border:1.5px dashed #f2b84b;padding:12px;border-radius:10px;margin-bottom:14px;font-size:12.5px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <span>OTP Sent: <strong id="demo-otp-code" style="font-size:15px;color:var(--orange)">482910</strong></span>
+                <button type="button" id="btn-autofill-otp" style="border:0;background:var(--ink);color:#fff;border-radius:6px;padding:4px 9px;font-size:11px;cursor:pointer;font-weight:700">Auto-fill</button>
+              </div>
+              <small style="display:block;color:var(--muted);margin-top:4px">Standard verification code 123456 is also accepted.</small>
+            </div>
+
+            <div class="form-group">
+              <label for="input-forgot-otp">Enter 6-digit OTP <span class="req">*</span></label>
+              <input type="text" id="input-forgot-otp" maxlength="6" placeholder="e.g. 482910" />
+            </div>
+
+            <div class="form-group">
+              <label for="input-forgot-newpwd">Create new password <span class="req">*</span></label>
+              <input type="password" id="input-forgot-newpwd" minlength="6" placeholder="At least 6 characters" />
+            </div>
+
+            <button type="submit" class="submit modal-submit" id="btn-reset-submit">
+              Verify OTP &amp; Save New Password <b>✓</b>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="session.js"></script>
+    <script src="https://accounts.google.com/gsi/client" defer></script>
+    <script src="hustle-db.js"></script>
+    <script src="auth.js" defer></script>
+  </body>
+</html>

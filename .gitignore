@@ -1,0 +1,23 @@
+# Node.js dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment & Sensitive Credentials (NEVER commit to GitHub)
+.env
+.env.local
+.env.production
+
+# macOS and OS metadata
+.DS_Store
+Thumbs.db
+
+# Logs & Temporary Scratch Files
+*.log
+logs/
+scratch/
+
+# Coverage and test artifacts
+coverage/
+.system_generated/

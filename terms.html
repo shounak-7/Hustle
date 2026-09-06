@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Terms & Conditions & How Hustle Works — Hustle</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="auth.css" />
+    <style>
+      .terms-shell {
+        max-width: 1190px;
+        margin: auto;
+        padding: 28px 24px 60px;
+      }
+      .terms-topbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 28px;
+        padding-bottom: 16px;
+        border-bottom: 1px solid var(--line);
+      }
+      .back-button {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 700;
+        font-size: 13px;
+        color: var(--ink);
+        text-decoration: none;
+        padding: 9px 16px;
+        border: 1px solid var(--line);
+        border-radius: 9px;
+        background: #fff;
+        transition: 0.2s ease;
+        cursor: pointer;
+      }
+      .back-button:hover {
+        border-color: var(--orange);
+        color: var(--orange);
+        transform: translateX(-2px);
+      }
+      .terms-layout {
+        display: grid;
+        grid-template-columns: 1fr 1.35fr;
+        gap: 48px;
+        align-items: start;
+      }
+      .terms-sidebar {
+        position: sticky;
+        top: 24px;
+      }
+      .terms-sidebar h1 {
+        font-family: Fraunces, serif;
+        font-size: 46px;
+        line-height: 1.05;
+        letter-spacing: -1.5px;
+        margin: 12px 0 16px;
+      }
+      .terms-sidebar h1 em {
+        font-style: italic;
+        color: var(--orange);
+      }
+      .terms-sidebar p {
+        color: var(--muted);
+        line-height: 1.6;
+        font-size: 15px;
+        margin-bottom: 24px;
+      }
+      .terms-highlights {
+        display: grid;
+        gap: 12px;
+        margin-bottom: 30px;
+      }
+      .highlight-card {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        padding: 14px 16px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 13px;
+      }
+      .highlight-card span {
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        background: #fdf1e4;
+        color: var(--orange);
+        display: grid;
+        place-items: center;
+        font-weight: bold;
+        font-size: 14px;
+        flex-shrink: 0;
+      }
+      .highlight-card strong {
+        display: block;
+        color: var(--ink);
+        font-size: 13px;
+      }
+      .highlight-card small {
+        display: block;
+        color: var(--muted);
+        font-size: 11px;
+        margin-top: 2px;
+      }
+      .action-box {
+        background: var(--cream);
+        border: 1px solid #ebdccb;
+        border-radius: 16px;
+        padding: 22px;
+        margin-top: 20px;
+      }
+      .action-box p {
+        font-size: 12px;
+        color: var(--muted);
+        margin: 0 0 14px;
+        line-height: 1.45;
+      }
+      .action-buttons {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+      .btn-ok {
+        flex: 1;
+        background: var(--ink);
+        color: #fff;
+        border: 0;
+        padding: 13px 18px;
+        border-radius: 9px;
+        font-weight: 700;
+        font-size: 13px;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        transition: 0.2s ease;
+      }
+      .btn-ok:hover {
+        background: #000;
+        transform: translateY(-1px);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+      }
+      .btn-back-alt {
+        padding: 13px 16px;
+        border: 1px solid #d4c8b6;
+        border-radius: 9px;
+        background: #fff;
+        color: var(--ink);
+        font-weight: 700;
+        font-size: 13px;
+        text-decoration: none;
+        cursor: pointer;
+        transition: 0.2s ease;
+      }
+      .btn-back-alt:hover {
+        border-color: var(--orange);
+        color: var(--orange);
+      }
+      .terms-content {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 20px;
+        padding: 38px 40px;
+        box-shadow: 0 10px 30px rgba(73, 49, 21, 0.04);
+      }
+      .content-section {
+        margin-bottom: 40px;
+        padding-bottom: 32px;
+        border-bottom: 1px solid #f0e7db;
+      }
+      .content-section:last-child {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-bottom: none;
+      }
+      .content-section h2 {
+        font-family: Fraunces, serif;
+        font-size: 26px;
+        letter-spacing: -0.6px;
+        margin: 8px 0 16px;
+        color: var(--ink);
+      }
+      .content-section p {
+        color: #55514b;
+        line-height: 1.65;
+        font-size: 14px;
+        margin: 0 0 16px;
+      }
+      .offer-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+        margin: 18px 0;
+      }
+      .offer-box {
+        background: var(--cream);
+        border: 1px solid #ebdccb;
+        border-radius: 12px;
+        padding: 16px;
+      }
+      .offer-box h3 {
+        font-size: 14px;
+        margin: 0 0 6px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        color: var(--ink);
+      }
+      .offer-box h3 span {
+        color: var(--orange);
+      }
+      .offer-box p {
+        font-size: 12px;
+        color: var(--muted);
+        margin: 0;
+        line-height: 1.45;
+      }
+      .steps-flow {
+        display: grid;
+        gap: 16px;
+        margin: 20px 0;
+      }
+      .step-item {
+        display: grid;
+        grid-template-columns: 44px 1fr;
+        gap: 16px;
+        align-items: start;
+        background: #fffdf9;
+        border: 1px solid #eee4d5;
+        border-radius: 12px;
+        padding: 16px;
+      }
+      .step-num {
+        width: 44px;
+        height: 44px;
+        border-radius: 10px;
+        background: #fae4cf;
+        color: var(--orange);
+        font-family: Fraunces, serif;
+        font-weight: bold;
+        font-size: 19px;
+        display: grid;
+        place-items: center;
+      }
+      .step-item h4 {
+        margin: 0 0 4px;
+        font-size: 15px;
+        color: var(--ink);
+      }
+      .step-item p {
+        margin: 0;
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.45;
+      }
+      .terms-list {
+        list-style: none;
+        padding: 0;
+        margin: 16px 0 0;
+        display: grid;
+        gap: 12px;
+      }
+      .terms-list li {
+        display: flex;
+        gap: 10px;
+        align-items: baseline;
+        font-size: 13px;
+        color: #524d45;
+        line-height: 1.55;
+      }
+      .terms-list li b {
+        color: var(--orange);
+        font-size: 14px;
+      }
+      .bottom-action-banner {
+        margin-top: 36px;
+        padding-top: 24px;
+        border-top: 1px solid var(--line);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      @media (max-width: 860px) {
+        .terms-layout {
+          grid-template-columns: 1fr;
+          gap: 32px;
+        }
+        .terms-sidebar {
+          position: static;
+        }
+        .terms-content {
+          padding: 24px 20px;
+        }
+        .offer-grid {
+          grid-template-columns: 1fr;
+        }
+        .bottom-action-banner {
+          flex-direction: column;
+          gap: 14px;
+          align-items: stretch;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="terms-shell">
+      <header class="terms-topbar">
+        <a class="brand" href="index.html" aria-label="Hustle home">
+          <span class="brand-mark">h</span>hustle
+        </a>
+        <button type="button" class="back-button" onclick="navigateBack()" aria-label="Go back">
+          ← Back
+        </button>
+      </header>
+
+      <div class="terms-layout">
+        <!-- Left Column: Overview & Quick Confirmation -->
+        <aside class="terms-sidebar">
+          <span class="step-label">PLATFORM TRANSPARENCY</span>
+          <h1>How it works & <em>Terms of Trust.</em></h1>
+          <p>
+            Hustle is founded on the simple premise that quality everyday help should be straightforward, respectful, and reliable for both customers and independent gig workers.
+          </p>
+
+          <div class="terms-highlights">
+            <div class="highlight-card">
+              <span>✓</span>
+              <div>
+                <strong>100% ID-Verified Professionals</strong>
+                <small>Government ID checks & skill validation</small>
+              </div>
+            </div>
+            <div class="highlight-card">
+              <span>✦</span>
+              <div>
+                <strong>Upfront Escrow & Price Clarity</strong>
+                <small>No hidden charges, surge fees, or surprises</small>
+              </div>
+            </div>
+            <div class="highlight-card">
+              <span>⚡</span>
+              <div>
+                <strong>Fair Worker Compensation</strong>
+                <small>Workers keep 100% of tips + same-day payouts</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="action-box">
+            <p>
+              By utilizing the Hustle platform as a customer or gig professional, you confirm alignment with our community standards and service terms.
+            </p>
+            <div class="action-buttons">
+              <button type="button" class="btn-ok" onclick="navigateBack()" id="btn-ok">
+                I Understand / OK <b>✓</b>
+              </button>
+              <a href="index.html" class="btn-back-alt">Go Back</a>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Right Column: Detailed Textual Breakdown -->
+        <main class="terms-content">
+          <!-- Section 1: Things We Offer -->
+          <section class="content-section" id="things-we-offer">
+            <span class="step-label">SECTION 01</span>
+            <h2>What We Offer</h2>
+            <p>
+              Hustle provides an on-demand, local marketplace designed to connect households and businesses with experienced, independent specialists across essential lifestyle services:
+            </p>
+
+            <div class="offer-grid">
+              <div class="offer-box">
+                <h3><span>⌂</span> Home Care & Deep Cleaning</h3>
+                <p>Residential sanitization, kitchen and bathroom deep cleaning, appliance maintenance, and seasonal prep.</p>
+              </div>
+              <div class="offer-box">
+                <h3><span>✦</span> Repairs & Maintenance</h3>
+                <p>Licensed electricians, certified plumbers, expert carpenters, and general handyman solutions.</p>
+              </div>
+              <div class="offer-box">
+                <h3><span>◈</span> Lessons & Skill Coaching</h3>
+                <p>Doorstep academic tutoring, STEM mentoring, musical instruments, and vocational language coaching.</p>
+              </div>
+              <div class="offer-box">
+                <h3><span>♥</span> Wellness & Personal Care</h3>
+                <p>Certified home spa specialists, therapeutic massages, beauty styling, and wellness trainers.</p>
+              </div>
+              <div class="offer-box">
+                <h3><span>▦</span> Device & Tech Support</h3>
+                <p>Same-day laptop diagnostics, Wi-Fi optimization, home office setup, and smart gadget installation.</p>
+              </div>
+              <div class="offer-box">
+                <h3><span>⌕</span> Errands, Moving & Care</h3>
+                <p>Flat shifting, parcel delivery, verified babysitting, pet walking, and dedicated elder companion care.</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 2: How It Works -->
+          <section class="content-section" id="how-it-works">
+            <span class="step-label">SECTION 02</span>
+            <h2>How It Works</h2>
+            <p>
+              From booking your first task to seamless completion, our platform is structured in 4 clear, transparent milestones:
+            </p>
+
+            <div class="steps-flow">
+              <div class="step-item">
+                <div class="step-num">01</div>
+                <div>
+                  <h4>Discover or Describe Your Need</h4>
+                  <p>Browse pre-packaged service templates or use our AI need-finder to state exactly what you require along with your preferred timeline and budget.</p>
+                </div>
+              </div>
+
+              <div class="step-item">
+                <div class="step-num">02</div>
+                <div>
+                  <h4>Match with Local, Verified Pros</h4>
+                  <p>Receive immediate responses from top-rated, background-checked independent workers nearby. Review real customer ratings, past job counts, and verified reviews.</p>
+                </div>
+              </div>
+
+              <div class="step-item">
+                <div class="step-num">03</div>
+                <div>
+                  <h4>Transparent Pricing & Secure Escrow</h4>
+                  <p>Agree on upfront costs before work commences. Your payment is held safely in escrow and only released once the job is completed to your satisfaction.</p>
+                </div>
+              </div>
+
+              <div class="step-item">
+                <div class="step-num">04</div>
+                <div>
+                  <h4>Same-Day Direct Payouts & Honest Reviews</h4>
+                  <p>Professionals receive same-day direct bank payouts with 100% tip retention. Rate and save your favorite pros for simple recurring bookings.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Section 3: Terms & Conditions -->
+          <section class="content-section" id="terms-safety">
+            <span class="step-label">SECTION 03</span>
+            <h2>Terms of Service & Community Standards</h2>
+            <p>
+              To maintain the integrity of our community and ensure safety for everyone involved, all users agree to the following terms:
+            </p>
+
+            <ul class="terms-list">
+              <li>
+                <b>✓</b>
+                <span><strong>Identity Verification:</strong> Every gig worker on Hustle undergoes identity verification and credential reviews prior to taking active bookings.</span>
+              </li>
+              <li>
+                <b>✓</b>
+                <span><strong>Pricing Integrity:</strong> Quoted prices on Hustle include standard labor costs. Any supplementary materials or unexpected scope changes must be mutually approved before execution.</span>
+              </li>
+              <li>
+                <b>✓</b>
+                <span><strong>Worker Dignity & Independence:</strong> Gig workers are independent professionals who set their schedules and manage their work. Customers agree to provide safe, harassment-free workspaces.</span>
+              </li>
+              <li>
+                <b>✓</b>
+                <span><strong>Cancellation Policy:</strong> Free cancellations are supported up to 2 hours prior to scheduled arrival. Cancellations made after a pro is en route incur a modest travel compensation fee.</span>
+              </li>
+              <li>
+                <b>✓</b>
+                <span><strong>Hustle Trust Guarantee:</strong> If a job does not meet quality standards, Hustle support facilitates prompt re-work or dispute resolution with customer support available 7 days a week.</span>
+              </li>
+            </ul>
+          </section>
+
+          <!-- Section 4: Privacy & Data Protection -->
+          <section class="content-section" id="privacy">
+            <span class="step-label">SECTION 04</span>
+            <h2>Privacy & Escrow Safeguards</h2>
+            <p>
+              Your contact details and exact address are shared only with the assigned professional once a gig is confirmed. Hustle never sells personal information to third-party data brokers.
+            </p>
+          </section>
+
+          <!-- Bottom Action Bar -->
+          <div class="bottom-action-banner">
+            <span style="font-size:12px;color:var(--muted)">Questions? Contact our team anytime at support@hustle.local</span>
+            <div style="display:flex;gap:10px">
+              <button type="button" class="btn-ok" onclick="navigateBack()" style="padding:11px 24px">
+                I Understand / OK <b>✓</b>
+              </button>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <script>
+      function navigateBack() {
+        if (document.referrer && document.referrer.includes(window.location.host)) {
+          window.history.back();
+        } else {
+          window.location.href = 'index.html';
+        }
+      }
+    </script>
+  </body>
+</html>

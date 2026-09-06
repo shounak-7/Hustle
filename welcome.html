@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Workspace — Hustle</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="auth.css" />
+  </head>
+  <body>
+    <main class="auth-shell">
+      <header class="auth-topbar" style="display:flex; justify-content:space-between; align-items:center;">
+        <a class="brand" href="index.html" aria-label="Hustle home">
+          <span class="brand-mark">h</span>hustle
+        </a>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <a class="back-link" href="index.html">← Back to Marketplace</a>
+          <button type="button" class="back-link" id="btn-welcome-logout" style="color:#ad2d19; border-color:#f8c8be; background:#fff; cursor:pointer;" aria-label="Log out of session">
+            🚪 Log Out
+          </button>
+        </div>
+      </header>
+
+      <div class="auth-layout">
+        <section class="auth-intro">
+          <p class="eyebrow" id="workspace-eyebrow">YOUR ACTIVE SESSION</p>
+          <h1 id="welcome-title">Welcome to <em>Hustle.</em></h1>
+          <p id="welcome-copy">Your personalized dashboard is ready.</p>
+          <div style="display:flex; gap:12px; align-items:center; flex-wrap:wrap; margin-top:18px;">
+            <a class="submit" style="display:inline-block; width:auto; text-decoration:none; margin-top:0;" href="index.html">
+              Return to marketplace <b>→</b>
+            </a>
+            <button type="button" class="back-link" id="btn-intro-logout" style="color:#ad2d19; border-color:#f8c8be; background:#fff; padding:12px 18px; font-size:13px; font-weight:700; cursor:pointer;">
+              Log Out of Account
+            </button>
+          </div>
+        </section>
+
+        <section class="auth-card">
+          <div class="step-label" id="role-pill-badge">CUSTOMER WORKSPACE</div>
+          <h2 id="role-heading">Your tailored workspace</h2>
+          <p id="role-subcopy">You remain logged in with this account across all visits until you explicitly log out.</p>
+          <div class="role-list" id="workspace-features">
+            <!-- Dynamically populated based on role -->
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <script src="session.js"></script>
+    <script>
+      const urlParams = new URLSearchParams(location.search);
+      const tokenFromUrl = urlParams.get('token');
+      const roleFromUrl = urlParams.get('role') || 'customer';
+      const nameFromUrl = urlParams.get('name');
+
+      // If arrived via Google OAuth redirect with a token, save full session and redirect
+      if (tokenFromUrl) {
+        const name = nameFromUrl ? decodeURIComponent(nameFromUrl) : (HustleSession.getUser()?.name || 'User');
+        const userObj = HustleSession.getUser() || {};
+        userObj.name = name;
+        userObj.role = roleFromUrl;
+        HustleSession.setSession(userObj, tokenFromUrl);
+
+        // Auto-redirect straight to the correct dashboard
+        const targetDash = roleFromUrl === 'worker' ? 'worker-dashboard.html' : 'customer-dashboard.html';
+        window.location.replace(targetDash);
+      }
+
+      // If user is not logged in at all, redirect to auth signin
+      if (!HustleSession.isLoggedIn() && !tokenFromUrl) {
+        window.location.href = 'auth.html?mode=signin';
+      }
+
+      const u = HustleSession.getUser() || {};
+      const r = u.role || roleFromUrl || 'customer';
+      const n = u.name || nameFromUrl || 'Friend';
+      const isWorker = r === 'worker';
+
+      const titleEl = document.querySelector('#welcome-title');
+      const headingEl = document.querySelector('#role-heading');
+      const copyEl = document.querySelector('#welcome-copy');
+      const eyebrowEl = document.querySelector('#workspace-eyebrow');
+      const pillBadge = document.querySelector('#role-pill-badge');
+      const featuresList = document.querySelector('#workspace-features');
+
+      if (titleEl) titleEl.innerHTML = `Welcome back, <em>${(n || 'there').split(' ')[0]}.</em>`;
+      if (eyebrowEl) eyebrowEl.textContent = isWorker ? 'WORKER PARTNER PORTAL · ONLINE' : 'CUSTOMER ACCOUNT · ACTIVE';
+      if (pillBadge) {
+        pillBadge.textContent = isWorker ? `WORKER PARTNER · ${u.skillCategory || 'PRO'}` : 'VERIFIED CUSTOMER';
+        pillBadge.style.color = isWorker ? '#c65316' : '#a85d1d';
+      }
+
+      const dashboardLink = document.querySelector('.submit');
+      if (dashboardLink) {
+        dashboardLink.href = isWorker ? 'worker-dashboard.html' : 'customer-dashboard.html';
+        dashboardLink.innerHTML = isWorker ? 'Open Partner Hub <b>→</b>' : 'Go to Customer Dashboard <b>→</b>';
+      }
+
+      if (isWorker) {
+        if (headingEl) headingEl.textContent = 'Partner Hub & Gig Management';
+        if (copyEl) copyEl.textContent = `You are logged in as a verified worker partner. Keep 100% of your tips with instant daily transfers.`;
+        if (featuresList) {
+          featuresList.innerHTML = `
+            <button type="button" onclick="location.href='worker-dashboard.html'">
+              <span>⚡</span><b>Active &amp; Accepting Requests</b>
+              <small>View live requests in ${u.city || 'your city'} for ${u.skillCategory || 'your trades'}</small>
+            </button>
+            <button type="button" onclick="location.href='worker-dashboard.html#activity'">
+              <span>💰</span><b>Daily Payouts &amp; Tips (100% Kept)</b>
+              <small>Direct escrow bank payouts with zero delay fees</small>
+            </button>
+            <button type="button" onclick="location.href='terms.html'">
+              <span>🛡️</span><b>Worker Dignity &amp; Insurance Protection</b>
+              <small>Every gig is backed by Hustle Fair Partner Standards</small>
+            </button>
+          `;
+        }
+      } else {
+        if (headingEl) headingEl.textContent = 'Customer Bookings & Requests';
+        if (copyEl) copyEl.textContent = 'Browse local services, save expert pros, and manage your bookings with escrow protection.';
+        if (featuresList) {
+          featuresList.innerHTML = `
+            <button type="button" onclick="location.href='customer-dashboard.html#services'">
+              <span>🔍</span><b>Browse Verified Local Services</b>
+              <small>Explore top-rated pros in cleaning, repairs, wellness, and tutoring</small>
+            </button>
+            <button type="button" onclick="location.href='customer-dashboard.html#request'">
+              <span>✳</span><b>Post a Custom Gig Request</b>
+              <small>Set your specific task details and ideal budget</small>
+            </button>
+            <button type="button" onclick="location.href='terms.html'">
+              <span>🛡️</span><b>Escrow &amp; Quality Guarantee</b>
+              <small>Funds are only released after satisfactory task completion</small>
+            </button>
+          `;
+        }
+      }
+
+      // Explicit Log Out Handlers
+      function handleLogout() {
+        HustleSession.logOut('index.html');
+      }
+
+      document.querySelector('#btn-welcome-logout')?.addEventListener('click', handleLogout);
+      document.querySelector('#btn-intro-logout')?.addEventListener('click', handleLogout);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,1508 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f48a24" />
+    <title>Gig Partner Hub — Hustle</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="profile-icon.css" />
+    <link rel="stylesheet" href="booking-system.css" />
+    <style>
+      :root {
+        --paper: #fffdf8;
+        --cream: #f7f1e8;
+        --ink: #25231f;
+        --muted: #706d66;
+        --line: #e7dfd2;
+        --orange: #e56d24;
+        --orange-dark: #c65316;
+        --gold: #f2b84b;
+        --radius: 18px;
+        --shadow: 0 12px 35px rgba(73, 49, 21, 0.08);
+        --green: #059669;
+        --green-bg: #ecfdf5;
+        --green-border: #a7f3d0;
+      }
+
+      body.worker-hub-body {
+        background-color: var(--paper);
+        color: var(--ink);
+        font-family: 'DM Sans', sans-serif;
+        margin: 0;
+        min-height: 100vh;
+      }
+
+      .worker-topbar {
+        background: rgba(255, 253, 248, 0.94);
+        border-bottom: 1px solid var(--line);
+        padding: 0 max(28px, calc((100vw - 1184px) / 2));
+        height: 80px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        backdrop-filter: blur(12px);
+      }
+
+      .brand-group {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .partner-badge-pill {
+        background: #fff7ed;
+        border: 1.5px solid #fdba74;
+        color: #ea580c;
+        padding: 4px 10px;
+        border-radius: 999px;
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0.6px;
+      }
+
+      .worker-nav-right {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .status-toggle-wrap {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: var(--green-bg);
+        border: 1px solid var(--green-border);
+        color: #065f46;
+        padding: 6px 14px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .status-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #10b981;
+        box-shadow: 0 0 8px #10b981;
+      }
+
+      .worker-profile-chip {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .worker-avatar-box {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #f97316, #ea580c);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 13px;
+        box-shadow: 0 2px 8px rgba(234, 88, 12, 0.25);
+      }
+
+      .btn-hub-logout {
+        background: #ffffff;
+        border: 1px solid var(--line);
+        color: var(--muted);
+        padding: 8px 16px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .btn-hub-logout:hover {
+        background: #fff1f2;
+        color: #e11d48;
+        border-color: #fecdd3;
+      }
+
+      .hub-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 34px 24px 80px;
+      }
+
+      /* Waiting List / Pending Approval Card */
+      .approval-gate-card {
+        background: #ffffff;
+        border: 1px solid #fed7aa;
+        border-radius: 22px;
+        padding: 42px 36px;
+        margin-bottom: 30px;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 12px 35px rgba(229, 109, 36, 0.07);
+      }
+
+      .approval-gate-card::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        height: 5px;
+        background: linear-gradient(90deg, #ea580c, #f59e0b, #e56d24);
+      }
+
+      .gate-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: #fffbeb;
+        color: #b45309;
+        border: 1px solid #fde68a;
+        padding: 5px 12px;
+        border-radius: 999px;
+        font-size: 12px;
+        font-weight: 800;
+        margin-bottom: 14px;
+        letter-spacing: 0.3px;
+      }
+
+      .gate-title {
+        font-family: 'Fraunces', serif;
+        font-size: 34px;
+        letter-spacing: -1px;
+        margin: 0 0 12px;
+        color: var(--ink);
+      }
+
+      .gate-title em {
+        font-style: italic;
+        color: var(--orange);
+      }
+
+      .gate-desc {
+        color: #575249;
+        font-size: 15px;
+        line-height: 1.65;
+        max-width: 740px;
+        margin: 0 0 24px;
+      }
+
+      .application-summary-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 16px;
+        background: var(--paper);
+        padding: 24px;
+        border-radius: 14px;
+        border: 1px solid var(--line);
+        margin-top: 20px;
+      }
+
+      .app-field small {
+        display: block;
+        color: var(--muted);
+        font-size: 11px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.6px;
+        margin-bottom: 5px;
+      }
+
+      .app-field strong {
+        color: var(--ink);
+        font-size: 15px;
+        font-weight: 700;
+      }
+
+      /* Approved Partner Hub */
+      .hub-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-bottom: 28px;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+
+      .verified-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: var(--green-bg);
+        color: #065f46;
+        border: 1px solid var(--green-border);
+        padding: 5px 12px;
+        border-radius: 999px;
+        font-size: 11.5px;
+        font-weight: 800;
+        letter-spacing: 0.4px;
+      }
+
+      .hub-header h1 {
+        font-family: 'Fraunces', serif;
+        font-size: 38px;
+        letter-spacing: -1.2px;
+        margin: 4px 0 0;
+        color: var(--ink);
+      }
+
+      .hub-header h1 em {
+        font-style: italic;
+        color: var(--orange);
+      }
+
+      /* Metrics Grid */
+      .metrics-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+        gap: 18px;
+        margin-bottom: 34px;
+      }
+
+      .metric-card {
+        background: #ffffff;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 22px;
+        box-shadow: 0 4px 20px rgba(73, 49, 21, 0.04);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .metric-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 28px rgba(73, 49, 21, 0.08);
+        border-color: #fdba74;
+      }
+
+      .metric-label {
+        font-size: 11.5px;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.7px;
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+
+      .metric-value {
+        font-family: 'Fraunces', serif;
+        font-size: 32px;
+        font-weight: 700;
+        color: var(--ink);
+        letter-spacing: -1px;
+        margin-bottom: 4px;
+      }
+
+      .metric-note {
+        font-size: 12px;
+        color: var(--green);
+        font-weight: 600;
+      }
+
+      .payout-card-action {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 10px;
+      }
+
+      .btn-instant-payout {
+        background: var(--orange);
+        color: #fff;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 8px;
+        font-size: 12px;
+        font-weight: 800;
+        cursor: pointer;
+        box-shadow: 0 3px 10px rgba(229, 109, 36, 0.3);
+        transition: transform 0.15s ease, background 0.15s ease;
+      }
+
+      .btn-instant-payout:hover {
+        background: var(--orange-dark);
+        transform: translateY(-1px);
+      }
+
+      /* Gigs Panel Grid */
+      .gigs-sections-grid {
+        display: grid;
+        grid-template-columns: 1.15fr 0.85fr;
+        gap: 24px;
+      }
+
+      @media (max-width: 980px) {
+        .gigs-sections-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .gig-panel {
+        background: #ffffff;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 26px;
+        box-shadow: 0 4px 25px rgba(73, 49, 21, 0.04);
+      }
+
+      .panel-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        padding-bottom: 14px;
+        border-bottom: 1px solid #f0e9df;
+      }
+
+      .panel-header h2 {
+        font-family: 'Fraunces', serif;
+        font-size: 20px;
+        letter-spacing: -0.5px;
+        margin: 0;
+        color: var(--ink);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .panel-count {
+        background: #fff7ed;
+        color: #ea580c;
+        border: 1px solid #fed7aa;
+        font-size: 12px;
+        font-weight: 800;
+        padding: 3px 10px;
+        border-radius: 999px;
+      }
+
+      .gig-item {
+        background: #ffffff;
+        border: 1.5px solid var(--line);
+        border-radius: 14px;
+        padding: 18px;
+        margin-bottom: 16px;
+        transition: all 0.2s ease;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+      }
+
+      .gig-item:hover {
+        border-color: #fdba74;
+        box-shadow: 0 6px 20px rgba(229, 109, 36, 0.08);
+      }
+
+      .gig-header-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 12px;
+        margin-bottom: 8px;
+      }
+
+      .gig-title {
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--ink);
+        margin: 0 0 4px;
+      }
+
+      .gig-price {
+        font-family: 'Fraunces', serif;
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--orange);
+        white-space: nowrap;
+      }
+
+      .gig-meta {
+        font-size: 13px;
+        color: var(--muted);
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-bottom: 12px;
+      }
+
+      .status-pill {
+        font-size: 11px;
+        font-weight: 800;
+        padding: 3px 9px;
+        border-radius: 999px;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+        display: inline-block;
+      }
+
+      .status-pill.pending { background: #f1f5f9; color: #475569; border: 1px solid #cbd5e1; }
+      .status-pill.bargaining { background: #fef3c7; color: #b45309; border: 1px solid #fde68a; }
+      .status-pill.accepted { background: #ecfdf5; color: #059669; border: 1px solid #a7f3d0; }
+
+      .customer-notes-box {
+        font-size: 13px;
+        color: #475569;
+        background: #fdfbf7;
+        border-left: 3px solid var(--orange);
+        padding: 10px 14px;
+        border-radius: 0 8px 8px 0;
+        margin-bottom: 12px;
+      }
+
+      .customer-counter-banner {
+        background: #fffbeb;
+        border: 1px solid #fde68a;
+        border-radius: 10px;
+        padding: 12px 14px;
+        margin-bottom: 12px;
+      }
+
+      .worker-awaiting-banner {
+        background: #fff7ed;
+        border: 1px solid #fed7aa;
+        border-radius: 10px;
+        padding: 10px 14px;
+        margin-bottom: 12px;
+        font-size: 13px;
+        color: #9a3412;
+        font-weight: 600;
+      }
+
+      .gig-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      .btn-accept-gig {
+        background: #059669;
+        color: #fff;
+        border: none;
+        padding: 9px 18px;
+        border-radius: 9px;
+        font-size: 13px;
+        font-weight: 700;
+        cursor: pointer;
+        box-shadow: 0 2px 8px rgba(5, 150, 105, 0.25);
+        transition: all 0.15s ease;
+      }
+
+      .btn-accept-gig:hover {
+        background: #047857;
+        transform: translateY(-1px);
+      }
+
+      .btn-bargain-gig {
+        background: #fff7ed;
+        border: 1.5px solid var(--orange);
+        color: #c2410c;
+        padding: 8px 16px;
+        border-radius: 9px;
+        font-size: 13px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.15s ease;
+      }
+
+      .btn-bargain-gig:hover {
+        background: #ffedd5;
+        transform: translateY(-1px);
+      }
+
+      .btn-decline-gig {
+        background: #fff1f2;
+        color: #e11d48;
+        border: 1px solid #fecdd3;
+        padding: 8px 14px;
+        border-radius: 9px;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.15s ease;
+      }
+
+      .btn-decline-gig:hover {
+        background: #ffe4e6;
+      }
+
+      .btn-complete-gig {
+        background: var(--orange);
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 9px;
+        font-size: 13.5px;
+        font-weight: 800;
+        cursor: pointer;
+        box-shadow: 0 4px 14px rgba(229, 109, 36, 0.3);
+        transition: all 0.15s ease;
+      }
+
+      .btn-complete-gig:hover {
+        background: var(--orange-dark);
+        transform: translateY(-1px);
+      }
+
+      .worker-counter-drawer {
+        background: #fdfbf7;
+        border: 1.5px solid #fed7aa;
+        border-radius: 12px;
+        padding: 16px;
+        margin-top: 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        box-shadow: 0 4px 14px rgba(229, 109, 36, 0.08);
+      }
+
+      .worker-counter-drawer input,
+      .worker-counter-drawer textarea {
+        background: #ffffff;
+        border: 1px solid #cbd5e1;
+        color: var(--ink);
+        padding: 9px 13px;
+        border-radius: 8px;
+        font-size: 13px;
+        font-family: inherit;
+        box-sizing: border-box;
+        width: 100%;
+        transition: border-color 0.2s, box-shadow 0.2s;
+      }
+
+      .worker-counter-drawer input:focus,
+      .worker-counter-drawer textarea:focus {
+        border-color: var(--orange);
+        box-shadow: 0 0 0 3px rgba(229, 109, 36, 0.18);
+        outline: none;
+      }
+
+      .drawer-action-btns {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 10px;
+        margin-top: 6px;
+      }
+
+      .btn-drawer-cancel {
+        background: #f1f5f9;
+        color: #475569;
+        border: 1px solid #cbd5e1;
+        padding: 8px 18px;
+        border-radius: 999px;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .btn-drawer-cancel:hover {
+        background: #e2e8f0;
+        color: #1e293b;
+        border-color: #94a3b8;
+      }
+
+      .btn-drawer-submit {
+        background: linear-gradient(135deg, #e56d24, #f59e0b);
+        color: #ffffff;
+        border: none;
+        padding: 8px 22px;
+        border-radius: 999px;
+        font-size: 13px;
+        font-weight: 700;
+        cursor: pointer;
+        box-shadow: 0 3px 10px rgba(229, 109, 36, 0.3);
+        transition: all 0.2s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .btn-drawer-submit:hover {
+        background: linear-gradient(135deg, #d45c15, #d97706);
+        box-shadow: 0 5px 14px rgba(229, 109, 36, 0.4);
+        transform: translateY(-1px);
+      }
+
+      .btn-drawer-submit:active {
+        transform: translateY(0);
+      }
+
+      .past-gig-review {
+        background: var(--paper);
+        padding: 12px 14px;
+        border-radius: 10px;
+        font-size: 13px;
+        color: #575249;
+        font-style: italic;
+        border: 1px solid var(--line);
+        margin-top: 8px;
+      }
+
+      .rating-stars {
+        color: #f59e0b;
+        font-size: 13px;
+        margin-right: 4px;
+      }
+
+      .ticket-badge-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 2px 8px;
+        border-radius: 999px;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.3px;
+      }
+      .ticket-badge-pill.open {
+        background: #fef3c7;
+        color: #b45309;
+        border: 1px solid #fde68a;
+      }
+      .ticket-badge-pill.under_review {
+        background: #eff6ff;
+        color: #1d4ed8;
+        border: 1px solid #bfdbfe;
+      }
+      .ticket-badge-pill.resolved {
+        background: #f0fdf4;
+        color: #15803d;
+        border: 1px solid #bbf7d0;
+      }
+      .ticket-badge-pill.dismissed {
+        background: #f1f5f9;
+        color: #64748b;
+        border: 1px solid #cbd5e1;
+      }
+
+      .explore-marketplace-card {
+        background: #ffffff;
+        border: 1.5px solid var(--line);
+        border-radius: 16px;
+        padding: 20px 24px;
+        margin-top: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 16px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+      }
+      .explore-copy strong {
+        font-family: 'Fraunces', serif;
+        font-size: 17px;
+        color: var(--ink);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 4px;
+      }
+      .explore-copy p {
+        font-size: 13px;
+        color: var(--muted);
+        margin: 0;
+        max-width: 540px;
+        line-height: 1.5;
+      }
+    </style>
+  </head>
+  <body class="worker-hub-body">
+    <!-- Utility Bar matching main site -->
+    <div class="utility-bar">
+      <span>Hustle Verified Pro Network</span>
+      <span class="utility-dot">•</span>
+      <span>Direct Payouts, Protected Escrow &amp; Two-Way Bargaining</span>
+    </div>
+
+    <!-- Partner Topbar -->
+    <header class="worker-topbar">
+      <div class="brand-group">
+        <a class="brand" href="index.html" aria-label="Hustle home">
+          <span class="brand-mark">h</span>
+          <span>hustle</span>
+        </a>
+        <span class="partner-badge-pill">GIG PARTNER HUB</span>
+      </div>
+
+      <div class="worker-nav-right">
+        <div class="status-toggle-wrap">
+          <span class="status-dot"></span>
+          <span id="availability-label">Online · Accepting Gigs</span>
+        </div>
+        <div class="worker-profile-chip">
+          <div class="worker-avatar-box" id="topbar-avatar">GP</div>
+          <div style="display:flex; flex-direction:column;">
+            <div style="display:flex; align-items:center; gap:6px;">
+              <span id="topbar-name" style="font-size:13.5px; font-weight:700; color:var(--ink);">Worker Partner</span>
+              <span id="topbar-city" style="font-size:11.5px; color:#c2410c; background:#fff7ed; padding:1px 8px; border-radius:6px; font-weight:700; border:1px solid #ffedd5;">📍 Bengaluru</span>
+            </div>
+            <small id="topbar-trade" style="font-size:11.5px; color:var(--muted); font-weight:500;">Trade Specialist</small>
+          </div>
+        </div>
+        <button type="button" class="btn-hub-logout" id="btn-worker-logout">Log Out</button>
+      </div>
+    </header>
+
+    <main class="hub-container">
+      <!-- 1. PENDING APPROVAL GATE (Rendered when approvalStatus !== 'approved') -->
+      <section class="approval-gate-card" id="gate-pending-box" style="display:none;">
+        <div class="gate-badge">⏳ APPLICATION UNDER REVIEW</div>
+        <h2 class="gate-title">Partner ID &amp; Skill Verification <em>in Progress</em></h2>
+        <p class="gate-desc">
+          Thank you for joining Hustle as a Gig Worker Partner! Our operations team manually verifies each partner’s credentials, ID documents, and trade skills to ensure safe, top-quality service for customers.
+        </p>
+
+        <div class="application-summary-grid">
+          <div class="app-field">
+            <small>Applicant Name</small>
+            <strong id="gate-worker-name">Loading...</strong>
+          </div>
+          <div class="app-field">
+            <small>Registered Trade</small>
+            <strong id="gate-worker-trade">Loading...</strong>
+          </div>
+          <div class="app-field">
+            <small>Experience</small>
+            <strong id="gate-worker-exp">Loading...</strong>
+          </div>
+          <div class="app-field">
+            <small>Service Locality</small>
+            <strong id="gate-worker-locality">Loading...</strong>
+          </div>
+          <div class="app-field">
+            <small>Verification Status</small>
+            <strong style="color:#d97706;">Pending Admin Approval</strong>
+          </div>
+        </div>
+
+        <div class="explore-marketplace-card">
+          <div class="explore-copy">
+            <strong><span>🧭</span> Explore Marketplace</strong>
+            <p>Browse on-demand trade requests, view service categories, and explore the platform as a guest while operations reviews your application.</p>
+          </div>
+          <a href="index.html" class="button button-orange" style="display:inline-flex; align-items:center; gap:6px; padding:10px 20px; font-weight:700; border-radius:10px; text-decoration:none;">
+            <span>Explore as Guest</span> <b>→</b>
+          </a>
+        </div>
+      </section>
+
+      <!-- 2. APPROVED PARTNER HUB (Rendered when approvalStatus === 'approved') -->
+      <section id="approved-hub-content" style="display:none;">
+        <div class="hub-header">
+          <div>
+            <div class="verified-pill">✓ VERIFIED &amp; ACTIVE PRO PARTNER</div>
+            <p class="eyebrow" style="margin-top:10px; margin-bottom:4px;"><span></span> GIG WORKER DASHBOARD</p>
+            <h1 id="welcome-partner-heading">Welcome back, <em>Partner</em></h1>
+            <p style="color:var(--muted); font-size:14.5px; margin:4px 0 0;">Here are your live customer appointments, counter-offers, and instant payouts.</p>
+          </div>
+          <div>
+            <a href="index.html" class="button button-orange" style="font-size:13px; padding:11px 18px; border-radius:10px;">View Customer Marketplace <b>↗</b></a>
+          </div>
+        </div>
+
+        <!-- Metrics Row -->
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <div class="metric-label">Total Earnings</div>
+            <div class="metric-value" id="val-total-earnings">₹0</div>
+            <div class="metric-note" id="note-total-earnings">Earned from completed tasks</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-label">Pending Escrow Balance</div>
+            <div class="metric-value" id="val-pending-escrow">₹0</div>
+            <div class="payout-card-action">
+              <span style="font-size:12px; color:var(--muted);">Releases on task sign-off</span>
+              <button type="button" class="btn-instant-payout" id="btn-request-payout">⚡ Payout</button>
+            </div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-label">Completed Jobs</div>
+            <div class="metric-value" id="val-completed-jobs">0</div>
+            <div class="metric-note" id="note-completed-jobs">0 tasks completed</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-label">Client Rating &amp; Tips</div>
+            <div class="metric-value" id="val-client-rating">New Pro</div>
+            <div class="metric-note" id="note-client-rating">Client rating unlocks after completed jobs</div>
+          </div>
+        </div>
+
+        <!-- Current vs Past Gigs Grid -->
+        <div class="gigs-sections-grid">
+          <!-- Live Available Gigs -->
+          <div class="gig-panel">
+            <div class="panel-header">
+              <h2><span style="color:var(--orange);">⚡</span> Live Available Gigs Nearby</h2>
+              <span class="panel-count" id="count-live-gigs">0 active</span>
+            </div>
+            <div id="live-gigs-container">
+              <!-- Live gigs injected dynamically -->
+            </div>
+          </div>
+
+          <!-- Past Completed Gigs -->
+          <div class="gig-panel">
+            <div class="panel-header">
+              <h2><span style="color:#b45309;">📜</span> Past Completed Gigs &amp; Reviews</h2>
+              <span class="panel-count" id="count-past-gigs">0 completed</span>
+            </div>
+            <div id="past-gigs-container">
+              <!-- Past gigs injected dynamically -->
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="session.js"></script>
+    <script>
+      const API_BASE = (window.location.protocol === 'http:' && window.location.port === '5001')
+        ? '/api/auth'
+        : 'http://localhost:5001/api/auth';
+
+      let isDashboardLoading = false;
+
+      async function loadWorkerDashboard() {
+        if (isDashboardLoading) return;
+        isDashboardLoading = true;
+
+        try {
+          const user = window.HustleSession ? HustleSession.getUser() : JSON.parse(localStorage.getItem('hustleCurrentUser') || 'null');
+          const token = window.HustleSession ? HustleSession.getToken() : localStorage.getItem('hustleToken');
+
+          if (!user || !token) {
+            window.location.href = 'auth.html?role=worker&mode=signin';
+            return;
+          }
+
+          if (user.role === 'customer') {
+            window.location.href = 'customer-dashboard.html';
+            return;
+          }
+
+          // Set Topbar info
+          const firstName = (user.name || 'Pro').split(' ')[0];
+          const initials = window.HustleSession ? HustleSession.getInitials(user.name) : 'GP';
+          document.querySelector('#topbar-name').textContent = user.name || 'Worker Partner';
+          document.querySelector('#topbar-avatar').textContent = initials;
+          document.querySelector('#topbar-trade').textContent = user.skillCategory ? `${user.skillCategory} Pro` : 'Verified Pro';
+          const topbarCity = document.querySelector('#topbar-city');
+          const activeCity = user.city || localStorage.getItem('hustleSelectedCity') || 'Bengaluru';
+          if (topbarCity) topbarCity.textContent = `📍 ${activeCity}`;
+          if (user.city) localStorage.setItem('hustleSelectedCity', user.city);
+
+          // Fetch fresh data from backend
+          let isApproved = user.approvalStatus === 'approved';
+          let dashboardData = null;
+          let workerTickets = [];
+
+          try {
+            const [dashRes, tickRes] = await Promise.all([
+              fetch(`${API_BASE}/worker/dashboard-data`, { headers: { 'Authorization': `Bearer ${token}` } }),
+              fetch(`${API_BASE}/tickets/my`, { headers: { 'Authorization': `Bearer ${token}` } }).catch(() => null)
+            ]);
+
+            if (dashRes.ok) {
+              dashboardData = await dashRes.json();
+              if (dashboardData.worker) {
+                isApproved = dashboardData.worker.approvalStatus === 'approved';
+                user.approvalStatus = dashboardData.worker.approvalStatus;
+                if (dashboardData.worker.city) {
+                  user.city = dashboardData.worker.city;
+                  localStorage.setItem('hustleSelectedCity', user.city);
+                  if (topbarCity) topbarCity.textContent = `📍 ${user.city}`;
+                }
+                // Save quietly to storage WITHOUT self-recursive event dispatch
+                localStorage.setItem('hustleCurrentUser', JSON.stringify(user));
+              }
+            } else {
+              console.error('Failed to load worker dashboard-data:', dashRes.status);
+            }
+
+            if (tickRes && tickRes.ok) {
+              const tData = await tickRes.json();
+              workerTickets = tData.tickets || [];
+            }
+          } catch (err) {
+            console.warn('Backend fetch failed, using stored session profile:', err.message);
+          }
+
+          const gatePending = document.querySelector('#gate-pending-box');
+          const approvedHub = document.querySelector('#approved-hub-content');
+
+          if (!isApproved) {
+            // Render Pending State
+            gatePending.style.display = 'block';
+            approvedHub.style.display = 'none';
+
+            document.querySelector('#gate-worker-name').textContent = user.name || 'N/A';
+            document.querySelector('#gate-worker-trade').textContent = user.skillCategory ? `${user.skillCategory} (${user.specificSkill || 'General'})` : 'Trade Specialist';
+            document.querySelector('#gate-worker-exp').textContent = user.experience ? `${user.experience} Years` : '1-3 Years';
+            document.querySelector('#gate-worker-locality').textContent = user.locality || `${activeCity} Local`;
+          } else {
+            // Render Approved State
+            gatePending.style.display = 'none';
+            approvedHub.style.display = 'block';
+
+            // Warning Banner for Worker
+            const oldWarn = document.getElementById('worker-warning-banner');
+            if (user.warningsCount > 0) {
+              if (!oldWarn) {
+                const wBanner = document.createElement('div');
+                wBanner.id = 'worker-warning-banner';
+                wBanner.style.cssText = 'background:#fef2f2; border:1.5px solid #fca5a5; border-radius:10px; padding:10px 16px; margin-bottom:16px; display:flex; align-items:center; gap:10px; font-size:12.5px; color:#991b1b;';
+                wBanner.innerHTML = `
+                  <span style="font-size:18px;">⚠️</span>
+                  <div>
+                    <strong>Partner Account Policy Warning (${user.warningsCount}/3):</strong>
+                    <div>You have received ${user.warningsCount} official warning(s) from platform dispute resolutions. Maintaining quality and verified conduct is required. Accounts exceeding 3 warnings are permanently banned.</div>
+                  </div>
+                `;
+                approvedHub.prepend(wBanner);
+              }
+            } else if (oldWarn) {
+              oldWarn.remove();
+            }
+
+            document.querySelector('#welcome-partner-heading').innerHTML = `Welcome back, <em>${firstName}</em>`;
+
+            const metrics = dashboardData?.metrics || {
+              totalEarnings: 0,
+              pendingEscrow: 0,
+              completedJobs: 0,
+              satisfactionScore: 'New Pro'
+            };
+
+            document.querySelector('#val-total-earnings').textContent = `₹${Number(metrics.totalEarnings || 0).toLocaleString()}`;
+            document.querySelector('#val-pending-escrow').textContent = `₹${Number(metrics.pendingEscrow || 0).toLocaleString()}`;
+            document.querySelector('#val-completed-jobs').textContent = metrics.completedJobs || 0;
+            const ratingEl = document.querySelector('#val-client-rating');
+            if (ratingEl) ratingEl.textContent = metrics.satisfactionScore || (metrics.completedJobs > 0 ? '5.0 ★' : 'New Pro');
+
+            if (metrics.completedJobs > 0) {
+              document.querySelector('#note-completed-jobs').textContent = `✓ ${metrics.completedJobs} verified client sign-offs`;
+              if (metrics.avgRatingNum) {
+                document.querySelector('#note-client-rating').textContent = `${metrics.reviewCount || 1} verified client review${(metrics.reviewCount || 1) > 1 ? 's' : ''}`;
+              } else {
+                document.querySelector('#note-client-rating').textContent = 'Client rating pending';
+              }
+            } else {
+              document.querySelector('#note-completed-jobs').textContent = '0 tasks completed';
+              document.querySelector('#note-client-rating').textContent = 'Client rating unlocks after completed jobs';
+            }
+
+            // Render Live Gigs
+            const liveContainer = document.querySelector('#live-gigs-container');
+            const countLiveEl = document.querySelector('#count-live-gigs');
+            const currentGigs = dashboardData?.currentGigs || [];
+            if (countLiveEl) countLiveEl.textContent = `${currentGigs.length} active`;
+
+            if (currentGigs.length === 0) {
+              liveContainer.innerHTML = `
+                <div style="text-align:center; padding: 40px 20px; border: 1.5px dashed var(--line); border-radius: 14px; background: var(--paper);">
+                  <span style="font-size:36px; display:block; margin-bottom:10px;">⚡</span>
+                  <strong style="color:var(--ink); font-size:16px; display:block; margin-bottom:6px;">No Pending Requests in Your Trade Yet</strong>
+                  <p style="color:var(--muted); font-size:13.5px; max-width:400px; margin:0 auto; line-height:1.5;">
+                    You are verified and online in <strong>${activeCity}</strong>! As soon as customers request <strong>${user.skillCategory || 'services'}</strong>, appointments will appear right here with instant accept, decline, and bargaining options.
+                  </p>
+                </div>
+              `;
+            } else {
+              liveContainer.innerHTML = currentGigs.map(g => {
+                const lastNeg = (g.negotiations && g.negotiations.length > 0) ? g.negotiations[g.negotiations.length - 1] : null;
+                const customerCounter = g.status === 'bargaining' && lastNeg && lastNeg.senderRole === 'customer';
+                const workerAwaiting = g.status === 'bargaining' && lastNeg && lastNeg.senderRole === 'worker';
+
+                // Worker can negotiate max 1 time per booking
+                const workerNegCount = (g.negotiations || []).filter(n => n.senderRole === 'worker' && (n.proposedPrice != null || n.proposedTime != null || n.newStatus === 'bargaining')).length;
+                const canWorkerAdjust = workerNegCount < 1;
+                const isPaid = g.paymentStatus === 'paid';
+
+                return `
+                  <div class="gig-item" id="gig-card-${g.id}">
+                    <div class="gig-header-row">
+                      <div>
+                        <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px;">
+                          <h3 class="gig-title" style="margin:0;">${g.title}</h3>
+                          <span class="status-pill ${g.status}">${isPaid && g.status === 'accepted' ? 'paid & in progress' : g.status}</span>
+                        </div>
+                        <div class="gig-meta">
+                          <span>📍 <strong>${g.locality}</strong></span>
+                          <span>👤 ${g.customerName}</span>
+                          <span>📅 ${g.scheduledDate} · ${g.scheduledTime}</span>
+                        </div>
+                      </div>
+                      <div class="gig-price">${g.budget}</div>
+                    </div>
+
+                    ${g.notes ? `
+                      <div class="customer-notes-box">
+                        <strong style="color:var(--ink);">Customer Instructions:</strong> ${g.notes}
+                      </div>
+                    ` : ''}
+
+                    ${customerCounter ? `
+                      <div class="customer-counter-banner">
+                        <strong style="color:#b45309; font-size:12.5px; display:block; margin-bottom:2px;">💬 Customer Proposed Counter-Terms:</strong>
+                        <span style="color:var(--ink); font-size:14px; font-weight:800;">${lastNeg.proposedPrice ? '₹' + lastNeg.proposedPrice : g.budget} ${lastNeg.proposedTime ? '· at ' + lastNeg.proposedTime : ''}</span>
+                        ${lastNeg.note ? `<p style="color:#575249; font-size:12px; margin:4px 0 0 0; font-style:italic;">“${lastNeg.note}”</p>` : ''}
+                      </div>
+                    ` : ''}
+
+                    ${workerAwaiting ? `
+                      <div class="worker-awaiting-banner">
+                        ⏳ You proposed an adjustment (${lastNeg.proposedPrice ? '₹' + lastNeg.proposedPrice : g.budget} ${lastNeg.proposedTime ? '· ' + lastNeg.proposedTime : ''}) · Waiting for customer response.
+                      </div>
+                    ` : ''}
+
+                    <div class="gig-actions" style="flex-wrap:wrap;">
+                      ${g.status === 'accepted' ? `
+                        ${isPaid ? `
+                          <div style="background:#ecfdf5; border:1px solid #a7f3d0; border-radius:10px; padding:10px 14px; margin-bottom:8px; width:100%; box-sizing:border-box;">
+                            <strong style="color:#065f46; font-size:13px; display:block;">💳 Payment Verified: ${g.budget} Secured in Hustle Escrow</strong>
+                            <span style="color:#047857; font-size:11.5px;">Customer has completed payment. Once you finish the service, mark it complete to release funds into your earnings!</span>
+                          </div>
+                          <button type="button" class="btn-complete-gig" data-id="${g.id}" data-action="complete" style="background:#059669; color:#fff; border:none; padding:10px 22px; border-radius:999px; font-weight:700; cursor:pointer; box-shadow:0 4px 12px rgba(5,150,105,0.25);">
+                            ✓ Mark Work Completed (Release ${g.budget})
+                          </button>
+                        ` : `
+                          <div style="background:#fffbeb; border:1px solid #fde68a; border-radius:10px; padding:10px 14px; margin-bottom:8px; width:100%; box-sizing:border-box;">
+                            <strong style="color:#92400e; font-size:13px; display:block;">⏳ Awaiting Customer Payment (${g.budget})</strong>
+                            <span style="color:#b45309; font-size:11.5px;">Task completion unlocks automatically once the customer completes their payment.</span>
+                          </div>
+                          <button type="button" class="btn-complete-gig" disabled style="opacity:0.5; cursor:not-allowed; background:#f1f5f9; color:#94a3b8; border:1px solid #cbd5e1; padding:10px 20px; border-radius:999px; font-weight:700;" title="Customer must complete payment before you can mark this task complete">
+                            🔒 Mark as Complete (Awaiting Customer Payment)
+                          </button>
+                        `}
+                      ` : `
+                        ${workerAwaiting ? `
+                          <div style="display:inline-flex; align-items:center; gap:8px; background:#eff6ff; color:#1d4ed8; border:1px solid #bfdbfe; padding:8px 16px; border-radius:999px; font-size:12.5px; font-weight:700;">
+                            ⏳ Waiting for Customer to Approve Counter-Offer (₹${lastNeg.proposedPrice || g.budget})
+                          </div>
+                          <button type="button" class="btn-decline-gig" data-id="${g.id}" data-action="reject">
+                            ✕ Withdraw Offer
+                          </button>
+                        ` : `
+                          <button type="button" class="btn-accept-gig" data-id="${g.id}" data-action="accept">
+                            ✓ Accept Task (${customerCounter ? '₹' + lastNeg.proposedPrice : g.budget})
+                          </button>
+                          ${canWorkerAdjust ? `
+                            <button type="button" class="btn-bargain-gig" data-id="${g.id}" data-action="toggle-drawer">
+                              💬 Adjust Time &amp; Price
+                            </button>
+                          ` : `
+                            <button type="button" class="btn-bargain-gig" disabled style="opacity:0.45; cursor:not-allowed; border-color:#cbd5e1; color:#94a3b8; background:#f8fafc;" title="Negotiation limit reached (max 1 adjustment allowed per booking)">
+                              💬 Adjust (1/1 Limit Reached)
+                            </button>
+                          `}
+                          <button type="button" class="btn-decline-gig" data-id="${g.id}" data-action="reject">
+                            ✕ Decline
+                          </button>
+                        `}
+                      `}
+                    </div>
+
+                    <!-- Inline Drawer for Bargaining -->
+                    ${canWorkerAdjust ? `
+                      <div class="worker-counter-drawer" id="drawer-${g.id}" style="display:none;">
+                        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px;">
+                          <div>
+                            <label style="font-size:11.5px; font-weight:700; color:var(--muted); display:block; margin-bottom:4px;">Your Counter Price (₹)</label>
+                            <input type="number" id="drawer-price-${g.id}" min="1" step="any" value="${lastNeg?.proposedPrice || g.budget.replace(/[^0-9]/g,'')}" placeholder="Amount in ₹" />
+                          </div>
+                          <div>
+                            <label style="font-size:11.5px; font-weight:700; color:var(--muted); display:block; margin-bottom:4px;">Adjusted Time Slot</label>
+                            <input type="text" id="drawer-time-${g.id}" value="${g.scheduledTime}" placeholder="e.g. 04:30 PM" />
+                          </div>
+                        </div>
+                        <div>
+                          <label style="font-size:11.5px; font-weight:700; color:var(--muted); display:block; margin-bottom:4px;">Note to Customer (Reason/Materials)</label>
+                          <textarea id="drawer-note-${g.id}" rows="2" placeholder="e.g. Can do tomorrow at 4 PM, will bring high-grade copper wires..."></textarea>
+                        </div>
+                        <div class="drawer-action-btns">
+                          <button type="button" class="btn-drawer-cancel" data-id="${g.id}" data-action="toggle-drawer">Cancel</button>
+                          <button type="button" class="btn-drawer-submit" data-id="${g.id}" data-action="submit-counter">Send Counter-Offer</button>
+                        </div>
+                      </div>
+                    ` : ''}
+                  </div>
+                `;
+              }).join('');
+            }
+
+            // Render Past Gigs
+            const pastContainer = document.querySelector('#past-gigs-container');
+            const countPastEl = document.querySelector('#count-past-gigs');
+            const pastGigs = dashboardData?.pastGigs || [];
+            if (countPastEl) countPastEl.textContent = `${pastGigs.length} completed`;
+
+            if (pastGigs.length === 0) {
+              pastContainer.innerHTML = `
+                <div style="text-align:center; padding: 40px 20px; border: 1.5px dashed var(--line); border-radius: 14px; background: var(--paper);">
+                  <span style="font-size:36px; display:block; margin-bottom:10px;">📜</span>
+                  <strong style="color:var(--ink); font-size:16px; display:block; margin-bottom:6px;">No Completed Jobs Yet</strong>
+                  <p style="color:var(--muted); font-size:13.5px; max-width:380px; margin:0 auto; line-height:1.5;">
+                    Accept incoming tasks above and mark them complete to build your rating, customer tips, and daily payouts!
+                  </p>
+                </div>
+              `;
+            } else {
+              pastContainer.innerHTML = pastGigs.map(g => {
+                const numericRating = (typeof g.rating === 'number' && !isNaN(g.rating) && g.rating >= 1) ? g.rating : 5;
+                const starsCount = Math.min(5, Math.max(1, Math.round(numericRating)));
+                const starStr = '★'.repeat(starsCount) + '☆'.repeat(5 - starsCount);
+                const displayRating = numericRating.toFixed(1);
+                // Confidentiality filter: worker only sees ticket raised by worker OR officially settled dispute
+                const gigTicket = (workerTickets || []).find(t => String(t.bookingId) === String(g.id) && (t.complainantRole === 'worker' || ['resolved', 'dismissed'].includes(t.status)));
+
+                return `
+                  <div class="gig-item">
+                    <div class="gig-header-row">
+                      <div>
+                        <h3 class="gig-title">${g.title}</h3>
+                        <div class="gig-meta">
+                          <span>👤 ${g.customerName}</span>
+                          <span>📅 ${g.date}</span>
+                          ${g.ratingVoided ? `
+                            <span style="color:#16a34a; font-size:11.5px; font-weight:700; background:#f0fdf4; border:1px solid #bbf7d0; padding:2px 7px; border-radius:5px;">
+                              ✓ Dispute Settled in Your Favor (Client Rating Dismissed)
+                            </span>
+                          ` : (g.hasReview ? `
+                            <span style="color:#d97706; font-weight:700;"><span class="rating-stars">${starStr}</span> ${displayRating} ★</span>
+                          ` : `
+                            <span style="color:#64748b; font-size:12px; font-weight:600;">⏳ Rating pending from client</span>
+                          `)}
+                        </div>
+                      </div>
+                      <div style="text-align:right;">
+                        <div class="gig-price" style="color:var(--green);">${g.amount}</div>
+                        <small style="color:var(--muted); font-size:11px;">+ ${g.tip}</small>
+                      </div>
+                    </div>
+                    ${g.review ? `<div class="past-gig-review">“${g.review}”</div>` : ''}
+
+                    <!-- Worker Dispute Ticket Section -->
+                    <div style="margin-top:12px; border-top:1px dashed var(--line); padding-top:10px;">
+                      ${gigTicket ? `
+                        <div style="background:#ffffff; border:1.5px solid ${gigTicket.status === 'resolved' ? '#86efac' : (gigTicket.status === 'dismissed' ? '#cbd5e1' : '#fcd34d')}; border-radius:10px; padding:12px 14px;">
+                          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px; margin-bottom:6px;">
+                            <span style="font-weight:700; font-size:12.5px; color:#1e293b;">🎫 Support Ticket #${gigTicket.ticketId}</span>
+                            <span class="ticket-badge-pill ${gigTicket.status}">
+                              ${gigTicket.status === 'resolved' ? '✓ Settled by Admin' : (gigTicket.status === 'dismissed' ? '✕ Dismissed' : '⏳ Under Operations Review')}
+                            </span>
+                          </div>
+                          <div style="font-size:12px; color:#64748b; margin-bottom:4px;">
+                            <strong>Category:</strong> ${gigTicket.category} · <em>Filed by ${gigTicket.complainantRole === 'worker' ? 'You' : gigTicket.complainantName}</em>
+                          </div>
+                          <p style="font-size:12px; color:#334155; margin:0 0 6px 0; background:#f8fafc; padding:6px 10px; border-radius:6px; line-height:1.4;">
+                            “${gigTicket.description}”
+                          </p>
+                          ${gigTicket.status === 'resolved' || gigTicket.adminNotes ? `
+                            <div style="background:#f0fdf4; border:1px solid #bbf7d0; border-radius:6px; padding:8px 10px; font-size:11.5px; color:#166534; margin-top:6px;">
+                              <strong style="display:block; margin-bottom:2px;">🛡️ Admin Settlement (${gigTicket.resolutionAction || 'Resolved'}):</strong>
+                              <div>${gigTicket.adminNotes || 'Dispute reviewed and settled according to platform standards.'}</div>
+                              <small style="display:block; margin-top:4px; color:#15803d; font-size:10.5px;">Settled by ${gigTicket.settledBy || 'Hustle Operations Staff'}</small>
+                            </div>
+                          ` : ''}
+                        </div>
+                      ` : `
+                        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px;">
+                          <span style="font-size:12px; color:var(--muted);">Issue with this customer or task terms?</span>
+                          <button type="button" class="btn-worker-toggle-dispute" data-id="${g.id}" data-action="toggle-worker-dispute" style="background:none; border:none; color:#dc2626; font-size:11.5px; font-weight:700; cursor:pointer; text-decoration:underline; display:inline-flex; align-items:center; gap:4px;">
+                            <span>⚠️</span> Report Customer / Raise Dispute
+                          </button>
+                        </div>
+                        <div class="worker-dispute-drawer" id="worker-dispute-drawer-${g.id}" style="display:none; background:#fff7ed; border:1.5px solid #fdba74; border-radius:10px; padding:12px 14px; margin-top:10px;">
+                          <div style="font-size:12.5px; font-weight:700; color:#9a3412; margin-bottom:4px; display:flex; align-items:center; gap:6px;">
+                            <span>🛡️</span> File Dispute Against Customer (${g.customerName})
+                          </div>
+                          <p style="font-size:11.5px; color:#78350f; margin:0 0 10px 0; line-height:1.4;">
+                            Notice an issue or false claim? File an official dispute. Hustle Operations staff will inspect the facts and settle escrow accordingly.
+                          </p>
+                          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:8px; margin-bottom:8px;">
+                            <div>
+                              <label style="font-size:11px; font-weight:700; color:#431407; display:block; margin-bottom:3px;">Issue Category</label>
+                              <select id="worker-dispute-category-${g.id}" style="width:100%; box-sizing:border-box; padding:6px 8px; border:1px solid #cbd5e1; border-radius:6px; font-size:11.5px; background:#fff;">
+                                <option value="Scope Creep / Demanded Extra Unpaid Work">Scope Creep / Extra Unpaid Work</option>
+                                <option value="Rude / Abusive Behavior">Rude / Abusive Behavior</option>
+                                <option value="Payment / False Escrow Claim">Payment / False Escrow Claim</option>
+                                <option value="Unsafe Working Conditions">Unsafe Working Conditions</option>
+                                <option value="Customer Absent / Denied Entry">Customer Absent / Denied Entry</option>
+                                <option value="Other Customer Dispute">Other Customer Dispute</option>
+                              </select>
+                            </div>
+                            <div>
+                              <label style="font-size:11px; font-weight:700; color:#431407; display:block; margin-bottom:3px;">Desired Settlement</label>
+                              <select id="worker-dispute-resolution-${g.id}" style="width:100%; box-sizing:border-box; padding:6px 8px; border:1px solid #cbd5e1; border-radius:6px; font-size:11.5px; background:#fff;">
+                                <option value="Release Full Escrow to Worker">Release Full Escrow to Worker</option>
+                                <option value="Customer Account Warning">Customer Account Warning</option>
+                                <option value="Compensation for Additional Materials">Compensation for Materials</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div style="margin-bottom:8px;">
+                            <label style="font-size:11px; font-weight:700; color:#431407; display:block; margin-bottom:3px;">Detailed Explanation</label>
+                            <textarea id="worker-dispute-desc-${g.id}" rows="2" placeholder="Detail what occurred with the client..." style="width:100%; box-sizing:border-box; padding:6px 8px; border:1px solid #cbd5e1; border-radius:6px; font-size:11.5px; font-family:inherit;"></textarea>
+                          </div>
+                          <div style="display:flex; justify-content:flex-end; gap:6px;">
+                            <button type="button" class="btn-worker-cancel-dispute" data-id="${g.id}" data-action="cancel-worker-dispute" style="background:#f1f5f9; border:1px solid #cbd5e1; color:#475569; padding:5px 12px; border-radius:6px; font-size:11px; font-weight:600; cursor:pointer;">Cancel</button>
+                            <button type="button" class="btn-worker-submit-dispute" data-id="${g.id}" data-action="submit-worker-dispute" style="background:#dc2626; color:#fff; border:none; padding:5px 14px; border-radius:6px; font-size:11px; font-weight:700; cursor:pointer; box-shadow:0 2px 6px rgba(220,38,38,0.25);">Submit to Admin</button>
+                          </div>
+                        </div>
+                      `}
+                    </div>
+                  </div>
+                `;
+              }).join('');
+            }
+          }
+        } finally {
+          isDashboardLoading = false;
+        }
+      }
+
+      // Toast notification helper
+      function showWorkerToast(msg, type = 'success') {
+        let container = document.getElementById('hustle-toast-container');
+        if (!container) {
+          container = document.createElement('div');
+          container.id = 'hustle-toast-container';
+          container.className = 'hustle-toast-container';
+          document.body.appendChild(container);
+        }
+
+        const toast = document.createElement('div');
+        toast.className = `hustle-toast-item ${type}`;
+
+        let icon = type === 'error' ? '⚠️' : (type === 'info' ? '⚡' : '🛡️');
+        let title = type === 'error' ? 'Notice' : (type === 'info' ? 'Task Update' : 'Escrow & Payout System');
+
+        toast.innerHTML = `
+          <span class="hustle-toast-icon">${icon}</span>
+          <div class="hustle-toast-content">
+            <strong>${title}</strong>
+            <p>${msg}</p>
+          </div>
+          <button type="button" class="hustle-toast-close" aria-label="Close notification">✕</button>
+        `;
+
+        container.appendChild(toast);
+
+        const closeBtn = toast.querySelector('.hustle-toast-close');
+        let dismissed = false;
+        const dismiss = () => {
+          if (dismissed) return;
+          dismissed = true;
+          toast.classList.add('out');
+          setTimeout(() => toast.remove(), 250);
+        };
+
+        closeBtn?.addEventListener('click', dismiss);
+        setTimeout(dismiss, 3800);
+      }
+
+      // Action Handlers
+      function toggleCounterDrawer(id) {
+        const drawer = document.getElementById(`drawer-${id}`);
+        if (!drawer) return;
+        const isHidden = (drawer.style.display === 'none' || !drawer.style.display);
+        drawer.style.display = isHidden ? 'flex' : 'none';
+        if (isHidden) {
+          setTimeout(() => {
+            document.getElementById(`drawer-price-${id}`)?.focus();
+          }, 50);
+        }
+      }
+
+      async function submitWorkerCounter(id, triggerBtn = null) {
+        const priceInput = document.getElementById(`drawer-price-${id}`);
+        const timeInput = document.getElementById(`drawer-time-${id}`);
+        const noteInput = document.getElementById(`drawer-note-${id}`);
+
+        const price = priceInput ? Number(priceInput.value) : NaN;
+        const time = timeInput ? timeInput.value.trim() : '';
+        const note = noteInput ? noteInput.value.trim() : '';
+
+        if (!price || isNaN(price) || price <= 0) {
+          showWorkerToast('Please enter a valid counter price in ₹.', 'error');
+          priceInput?.focus();
+          return;
+        }
+
+        await handleWorkerBookingAction(id, 'bargain', {
+          proposedPrice: price,
+          proposedTime: time || undefined,
+          note: note || undefined
+        }, triggerBtn);
+      }
+
+      async function handleWorkerBookingAction(bookingId, action, extra = {}, triggerBtn = null) {
+        const token = window.HustleSession ? HustleSession.getToken() : localStorage.getItem('hustleToken');
+        if (!token) {
+          showWorkerToast('Session expired. Please sign in again.', 'error');
+          window.location.href = 'auth.html?role=worker&mode=signin';
+          return;
+        }
+
+        const originalHtml = triggerBtn ? triggerBtn.innerHTML : '';
+        if (triggerBtn) {
+          triggerBtn.disabled = true;
+          triggerBtn.innerHTML = '<span>⏳ Processing...</span>';
+        }
+
+        try {
+          const res = await fetch(`${API_BASE}/bookings/${bookingId}/respond`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${token}`
+            },
+            body: JSON.stringify({ action, ...extra })
+          });
+
+          const data = await res.json();
+          if (!res.ok || !data.success) {
+            throw new Error(data.message || 'Action failed');
+          }
+
+          showWorkerToast(data.message || 'Updated successfully!', 'success');
+          await loadWorkerDashboard();
+        } catch (err) {
+          if (triggerBtn) {
+            triggerBtn.disabled = false;
+            triggerBtn.innerHTML = originalHtml;
+          }
+          showWorkerToast(err.message || 'Action failed', 'error');
+        }
+      }
+
+      // Expose globally
+      window.toggleCounterDrawer = toggleCounterDrawer;
+      window.submitWorkerCounter = submitWorkerCounter;
+      window.handleWorkerBookingAction = handleWorkerBookingAction;
+
+      // Event delegation on live-gigs-container (single point of event handling)
+      document.getElementById('live-gigs-container')?.addEventListener('click', (e) => {
+        // Do not intercept clicks on inputs, textareas, or labels
+        if (e.target.closest('input, textarea, label')) {
+          return;
+        }
+
+        const btn = e.target.closest('button');
+        if (!btn) return;
+        e.preventDefault();
+        e.stopPropagation();
+
+        const id = btn.dataset.id;
+        const action = btn.dataset.action;
+        if (!id || !action) return;
+
+        if (action === 'accept' || action === 'reject' || action === 'complete') {
+          handleWorkerBookingAction(id, action, {}, btn);
+        } else if (action === 'toggle-drawer') {
+          toggleCounterDrawer(id);
+        } else if (action === 'submit-counter') {
+          submitWorkerCounter(id, btn);
+        }
+      });
+
+      // Event delegation on past-gigs-container for customer dispute actions
+      document.getElementById('past-gigs-container')?.addEventListener('click', async (e) => {
+        if (e.target.closest('input, textarea, label, select')) {
+          return;
+        }
+
+        const btn = e.target.closest('button');
+        if (!btn) return;
+        e.preventDefault();
+        e.stopPropagation();
+
+        const id = btn.dataset.id;
+        const action = btn.dataset.action;
+        if (!id || !action) return;
+
+        if (action === 'toggle-worker-dispute') {
+          const drawer = document.getElementById(`worker-dispute-drawer-${id}`);
+          if (drawer) drawer.style.display = drawer.style.display === 'none' ? 'block' : 'none';
+        } else if (action === 'cancel-worker-dispute') {
+          const drawer = document.getElementById(`worker-dispute-drawer-${id}`);
+          if (drawer) drawer.style.display = 'none';
+        } else if (action === 'submit-worker-dispute') {
+          const category = document.getElementById(`worker-dispute-category-${id}`)?.value || 'Other Customer Dispute';
+          const desiredResolution = document.getElementById(`worker-dispute-resolution-${id}`)?.value || 'Release Full Escrow to Worker';
+          const description = document.getElementById(`worker-dispute-desc-${id}`)?.value || '';
+
+          if (!description.trim()) {
+            showWorkerToast('Please provide a detailed explanation of the dispute.', 'error');
+            return;
+          }
+
+          const originalText = btn.textContent;
+          btn.disabled = true;
+          btn.textContent = 'Submitting...';
+
+          try {
+            const token = window.HustleSession ? HustleSession.getToken() : localStorage.getItem('hustleToken');
+            const res = await fetch(`${API_BASE}/tickets`, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+              },
+              body: JSON.stringify({
+                bookingId: id,
+                category,
+                description: description.trim(),
+                desiredResolution
+              })
+            });
+
+            const data = await res.json();
+            if (!res.ok || !data.success) {
+              throw new Error(data.message || 'Failed to file ticket.');
+            }
+
+            showWorkerToast(`🎫 ${data.message || 'Dispute ticket registered with Admin!'}`, 'success');
+            setTimeout(() => {
+              loadWorkerDashboard();
+            }, 400);
+          } catch (err) {
+            btn.disabled = false;
+            btn.textContent = originalText;
+            showWorkerToast(err.message || 'Error filing dispute.', 'error');
+          }
+        }
+      });
+
+      // Logout handler
+      document.querySelector('#btn-worker-logout')?.addEventListener('click', () => {
+        if (window.HustleSession) {
+          HustleSession.logOut('index.html');
+        } else {
+          localStorage.removeItem('hustleToken');
+          localStorage.removeItem('hustleCurrentUser');
+          window.location.href = 'index.html';
+        }
+      });
+
+      // Instant Payout Check
+      document.querySelector('#btn-request-payout')?.addEventListener('click', () => {
+        const earningsText = document.querySelector('#val-total-earnings')?.textContent || '₹0';
+        const amount = parseInt(earningsText.replace(/[^0-9]/g, ''), 10) || 0;
+        if (amount <= 0) {
+          showWorkerToast('No released earnings available for payout yet. Complete an active customer task to release escrow funds into your earnings!', 'error');
+          return;
+        }
+        showWorkerToast(`Instant Payout of ₹${amount.toLocaleString()} triggered via NEFT/UPI to your registered bank account! Ref: HUSTLE_PAY_${Date.now().toString().slice(-6)}`, 'success');
+      });
+
+      loadWorkerDashboard();
+    </script>
+  </body>
+</html>

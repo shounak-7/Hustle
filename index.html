@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f48a24" />
+    <title>Hustle — Services, on your terms</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="hero-pattern.css" />
+    <link rel="stylesheet" href="enhancements.css" />
+    <link rel="stylesheet" href="responsive-fixes.css" />
+    <link rel="stylesheet" href="profile-icon.css" />
+    <link rel="stylesheet" href="category-upgrade.css" />
+    <link rel="stylesheet" href="services-carousel.css" />
+    <link rel="stylesheet" href="search-cta.css" />
+    <link rel="stylesheet" href="mobile-header-request.css" />
+    <link rel="stylesheet" href="header-layout.css" />
+    <link rel="stylesheet" href="location-picker.css" />
+    <link rel="stylesheet" href="booking-system.css" />
+  </head>
+  <body>
+    <div class="utility-bar"><span>Now serving 12 cities</span><span class="utility-dot">•</span><span>Verified professionals, right around the corner</span></div>
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="Hustle home"><span class="brand-mark">h</span><span>hustle</span></a>
+      <button class="location button-ghost" id="location-picker" type="button" aria-haspopup="dialog" aria-expanded="false" aria-label="Choose location"><span class="pin">⌖</span><span><small id="location-status"></small><strong id="location-name">Choose location</strong></span><span class="chevron">⌄</span></button>
+      <label class="site-search"><span>⌕</span><input id="search" placeholder="Search cleaners, tutors, movers..." /><kbd>⌘ K</kbd></label>
+      <nav class="nav-actions" aria-label="Primary navigation">
+        <a class="help-link" href="terms.html" aria-label="How Hustle works & Terms">?</a>
+        <div class="profile-nav-wrap" id="profile-nav-wrap">
+          <!-- Guest Sign In / Profile Button (Default login: none) -->
+          <a class="profile-menu" id="nav-guest-btn" href="auth.html" aria-label="Sign in or register" title="Sign in or register">
+            <svg class="profile-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.4"/><path d="M5.4 20c.8-3.3 3.2-5.1 6.6-5.1s5.8 1.8 6.6 5.1"/></svg>
+          </a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero shell">
+        <div class="hero-copy">
+          <p class="eyebrow"><span></span> ON-DEMAND, DONE RIGHT</p>
+          <h1>Make more time for <em>your life.</em></h1>
+          <p class="hero-text">Whatever needs doing, find a trusted local person who can make it happen today.</p>
+          <div class="hero-actions"><a class="button button-dark" href="auth.html?role=customer">Explore services <b>→</b></a><a class="button button-light" href="auth.html?role=worker">I want to work <b>↗</b></a></div>
+          <div class="social-proof"><div class="faces"><span>AR</span><span>PK</span><span>AN</span><span>+</span></div><p><strong>4.9/5 from 12,000+ users</strong><br />who got their weekends back</p></div>
+        </div>
+        <div class="hero-art" aria-label="Local professional helping a customer">
+          <div class="sun"></div><div class="check-float">✓ <span>Trusted<br /><b>pros nearby</b></span></div><div class="rating-float"><b>★ 4.9</b><span>average rating</span></div>
+          <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1100&q=85" alt="Professional working on a laptop" />
+          <div class="hero-caption"><span>GIG OF THE DAY</span><strong>Get it done. Feel lighter.</strong></div>
+        </div>
+      </section>
+
+      <section class="categories shell" aria-labelledby="category-title">
+        <div class="section-heading"><div><p class="eyebrow">BROWSE BY NEED</p><h2 id="category-title">What can we help with?</h2></div><a href="#services" class="text-link">See all services <span>→</span></a></div>
+        <label class="need-finder"><span class="ai-spark">✦</span><span class="ai-label">AI MATCH</span><input id="need-finder" placeholder="Describe what you need — “a leaking tap”, “help moving”, “maths tutor”" /><button type="button" id="find-service" aria-label="Find my service"><i aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="5.4"/><path d="m15 15 4.3 4.3"/></svg></i></button></label>
+        <div class="category-carousel"><div class="category-row" id="category-row">
+          <a href="#services" class="category-card"><span class="category-icon peach"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="hc-grad" x1="4" y1="4" x2="28" y2="28" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#f97316"/><stop offset="100%" stop-color="#ea580c"/></linearGradient><linearGradient id="hc-roof" x1="16" y1="3" x2="16" y2="17" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#fb923c"/><stop offset="100%" stop-color="#ea580c"/></linearGradient></defs><path d="M5 14.5L16 5.5L27 14.5" stroke="url(#hc-roof)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 13.5V25C8 25.5523 8.44772 26 9 26H23C23.5523 26 24 25.5523 24 25V13.5" fill="#fff" fill-opacity="0.8" stroke="url(#hc-grad)" stroke-width="2" stroke-linejoin="round"/><rect x="13" y="18" width="6" height="8" rx="1" fill="#f97316" fill-opacity="0.25" stroke="#ea580c" stroke-width="1.6"/><circle cx="16" cy="11.5" r="2" fill="#f97316"/><path d="M26 6L27 8.5L29.5 9.5L27 10.5L26 13L25 10.5L22.5 9.5L25 8.5L26 6Z" fill="#f59e0b"/></svg></span><b>Home care</b><small>Cleaning & repairs</small></a>
+          <a href="#services" class="category-card"><span class="category-icon gold"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="bw-gold" x1="6" y1="6" x2="26" y2="26" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#f59e0b"/><stop offset="100%" stop-color="#d97706"/></linearGradient><linearGradient id="bw-petal" x1="16" y1="7" x2="16" y2="25" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#fbbf24"/><stop offset="100%" stop-color="#ea580c"/></linearGradient></defs><path d="M16 6C16 6 12 11 12 16C12 18.2 13.8 20 16 20C18.2 20 20 18.2 20 16C20 11 16 6 16 6Z" fill="url(#bw-petal)" fill-opacity="0.85"/><path d="M10 13C10 13 6 16.5 6 19.5C6 21.7 7.8 23.5 10 23.5C12.2 23.5 14.5 21.5 14.5 19.5C14.5 16.5 10 13 10 13Z" fill="url(#bw-gold)" fill-opacity="0.65"/><path d="M22 13C22 13 26 16.5 26 19.5C26 21.7 24.2 23.5 22 23.5C19.8 23.5 17.5 21.5 17.5 19.5C17.5 16.5 22 13 22 13Z" fill="url(#bw-gold)" fill-opacity="0.65"/><path d="M7 26C11 28 21 28 25 26" stroke="#d97706" stroke-width="2" stroke-linecap="round"/><circle cx="16" cy="15.5" r="1.5" fill="#fff"/></svg></span><b>Beauty & wellness</b><small>Feel-good care</small></a>
+          <a href="#services" class="category-card"><span class="category-icon blush"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="ls-grad" x1="5" y1="5" x2="27" y2="27" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#ef4444"/><stop offset="100%" stop-color="#be123c"/></linearGradient><linearGradient id="ls-cap" x1="16" y1="4" x2="16" y2="16" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#e11d48"/><stop offset="100%" stop-color="#9f1239"/></linearGradient></defs><path d="M16 5L28 11L16 17L4 11L16 5Z" fill="url(#ls-cap)" stroke="#9f1239" stroke-width="1.2" stroke-linejoin="round"/><path d="M25 13V19C25 19 23.5 20.5 22 20.5" stroke="#f59e0b" stroke-width="1.8" stroke-linecap="round"/><circle cx="22" cy="21" r="1" fill="#f59e0b"/><path d="M9 14.5V20C9 20 12.5 22.5 16 22.5C19.5 22.5 23 20 23 20V14.5" stroke="url(#ls-grad)" stroke-width="2" stroke-linecap="round"/><path d="M7 23C11 25 16 24 16 24C16 24 21 25 25 23" stroke="#be123c" stroke-width="2" stroke-linecap="round"/></svg></span><b>Lessons & skills</b><small>Learn from experts</small></a>
+          <a href="#services" class="category-card"><span class="category-icon lavender"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="ts-screen" x1="6" y1="7" x2="26" y2="22" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#8b5cf6"/><stop offset="100%" stop-color="#6d28d9"/></linearGradient></defs><rect x="6" y="8" width="20" height="14" rx="2" fill="url(#ts-screen)" stroke="#5b21b6" stroke-width="1.8"/><path d="M4 23H28C28 23 26 25 25 25H7C6 25 4 23 4 23Z" fill="#7c3aed" stroke="#5b21b6" stroke-width="1.5" stroke-linejoin="round"/><path d="M11 14C12.5 12.5 14.2 11.8 16 11.8C17.8 11.8 19.5 12.5 21 14" stroke="#c4b5fd" stroke-width="1.8" stroke-linecap="round"/><path d="M13.5 16.5C14.2 15.8 15.1 15.4 16 15.4C16.9 15.4 17.8 15.8 18.5 16.5" stroke="#38bdf8" stroke-width="1.8" stroke-linecap="round"/><circle cx="16" cy="18.5" r="1.2" fill="#38bdf8"/></svg></span><b>Tech support</b><small>Devices & Wi-Fi</small></a>
+          <a href="#services" class="category-card"><span class="category-icon mint"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="ee-grad" x1="7" y1="5" x2="25" y2="27" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#10b981"/><stop offset="100%" stop-color="#047857"/></linearGradient><linearGradient id="ee-cal" x1="16" y1="6" x2="16" y2="12" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#34d399"/><stop offset="100%" stop-color="#059669"/></linearGradient></defs><rect x="5" y="8" width="22" height="18" rx="3" fill="#fff" fill-opacity="0.85" stroke="url(#ee-grad)" stroke-width="2"/><path d="M5 13H27" stroke="url(#ee-grad)" stroke-width="1.8"/><rect x="5" y="8" width="22" height="5" rx="2" fill="url(#ee-cal)"/><path d="M10 5V9M22 5V9" stroke="#047857" stroke-width="2.2" stroke-linecap="round"/><circle cx="10" cy="18" r="1.5" fill="#10b981"/><circle cx="16" cy="18" r="1.5" fill="#f59e0b"/><path d="M20 22L22 24L26 19" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><b>Events & errands</b><small>Help on the go</small></a>
+          <a href="#services" class="category-card"><span class="category-icon blue"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="md-van" x1="4" y1="8" x2="28" y2="24" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#0284c7"/><stop offset="100%" stop-color="#0369a1"/></linearGradient></defs><path d="M4 10C4 9.44772 4.44772 9 5 9H18V21H4V10Z" fill="url(#md-van)" fill-opacity="0.9" stroke="#0369a1" stroke-width="1.6"/><path d="M18 12H23L27 16V21H18V12Z" fill="#38bdf8" fill-opacity="0.75" stroke="#0369a1" stroke-width="1.6" stroke-linejoin="round"/><circle cx="10" cy="22" r="3" fill="#334155" stroke="#fff" stroke-width="1.5"/><circle cx="23" cy="22" r="3" fill="#334155" stroke="#fff" stroke-width="1.5"/><path d="M18 13.5H22.5L25.5 16.5H18V13.5Z" fill="#fff" fill-opacity="0.7"/><path d="M2 12H1M2 15H0M2 18H1" stroke="#f97316" stroke-width="1.8" stroke-linecap="round"/></svg></span><b>Moving & delivery</b><small>Shift with ease</small></a>
+        </div><div class="category-controls"><button id="category-prev" aria-label="Show previous categories">←</button><button id="category-next" aria-label="Show more categories">→</button></div></div>
+      </section>
+
+      <section class="services-band" id="services"><div class="shell">
+        <div class="section-heading"><div><p class="eyebrow">EVERYDAY HELP</p><h2>Services we offer</h2><p class="section-subtitle">Great local help for life's little and big jobs.</p></div><div class="carousel-controls"><button aria-label="Previous">←</button><button aria-label="Next">→</button></div></div>
+        <div class="service-grid">
+          <article class="service-card"><div class="image-wrap"><img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=900&q=80" alt="Home cleaner arranging a room" /><span class="tag">AVAILABLE TODAY</span><button class="heart" aria-label="Save service">♡</button></div><div class="service-content"><div class="card-top"><p>HOME CARE</p><span>★ 4.9 <small>(248)</small></span></div><h3>Deep home cleaning</h3><p>Kitchen, bath & living spaces</p><div class="card-bottom"><strong>From ₹699</strong><button class="round-arrow" aria-label="View deep home cleaning">→</button></div></div></article>
+          <article class="service-card"><div class="image-wrap"><img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=900&q=80" alt="Relaxing wellness treatment" /><span class="tag coral">TOP RATED</span><button class="heart" aria-label="Save service">♡</button></div><div class="service-content"><div class="card-top"><p>WELLNESS</p><span>★ 4.8 <small>(190)</small></span></div><h3>At-home spa therapy</h3><p>Relaxation without the commute</p><div class="card-bottom"><strong>From ₹1,099</strong><button class="round-arrow" aria-label="View spa therapy">→</button></div></div></article>
+          <article class="service-card"><div class="image-wrap"><img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=900&q=80" alt="Tutor helping student learn" /><span class="tag amber">FLEXIBLE TIMINGS</span><button class="heart" aria-label="Save service">♡</button></div><div class="service-content"><div class="card-top"><p>LEARN</p><span>★ 5.0 <small>(86)</small></span></div><h3>Maths tutoring</h3><p>For grades 6–12, at your place</p><div class="card-bottom"><strong>From ₹1499/month</strong><button class="round-arrow" aria-label="View maths tutoring">→</button></div></div></article>
+          <article class="service-card optional-card"><div class="image-wrap"><img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=900&q=80" alt="Handyman repairing a home fixture" /><span class="tag">QUICK BOOK</span><button class="heart" aria-label="Save service">♡</button></div><div class="service-content"><div class="card-top"><p>HOME REPAIR</p><span>★ 4.9 <small>(154)</small></span></div><h3>Handyman visits</h3><p>Small fixes, sorted in one visit</p><div class="card-bottom"><strong>From ₹349</strong><button class="round-arrow" aria-label="View handyman services">→</button></div></div></article>
+          <article class="service-card optional-card"><div class="image-wrap"><img src="https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?auto=format&fit=crop&w=900&q=80" alt="Electrician repairing a fixture" /><span class="tag">FAST RESPONSE</span><button class="heart" aria-label="Save service">♡</button></div><div class="service-content"><div class="card-top"><p>REPAIRS</p><span>★ 4.9 <small>(319)</small></span></div><h3>Electrician visits</h3><p>Safe fixes for every room</p><div class="card-bottom"><strong>From ₹299</strong><button class="round-arrow">→</button></div></div></article>
+          <article class="service-card optional-card"><div class="image-wrap"><img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=900&q=80" alt="Modern kitchen plumbing" /><span class="tag coral">BOOK TODAY</span><button class="heart" aria-label="Save service">♡</button></div><div class="service-content"><div class="card-top"><p>HOME REPAIR</p><span>★ 4.8 <small>(201)</small></span></div><h3>Plumbing solutions</h3><p>Leaks, fittings & installations</p><div class="card-bottom"><strong>From ₹349</strong><button class="round-arrow">→</button></div></div></article>
+          <article class="service-card optional-card"><div class="image-wrap"><img src="https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&w=900&q=80" alt="Carpenter working with wood" /><span class="tag amber">TOP RATED</span><button class="heart" aria-label="Save service">♡</button></div><div class="service-content"><div class="card-top"><p>CARPENTRY</p><span>★ 5.0 <small>(107)</small></span></div><h3>Carpentry & assembly</h3><p>Furniture built to last</p><div class="card-bottom"><strong>From ₹499</strong><button class="round-arrow">→</button></div></div></article>
+          <article class="service-card optional-card"><div class="image-wrap"><img src="https://images.unsplash.com/photo-1602030028438-4cf153cbae9e?auto=format&fit=crop&w=900&q=80" alt="Babysitter playing with a child" /><span class="tag">VERIFIED CARE</span><button class="heart" aria-label="Save service">♡</button></div><div class="service-content"><div class="card-top"><p>CHILDCARE</p><span>★ 4.9 <small>(75)</small></span></div><h3>Babysitting</h3><p>Caring hands for your little ones</p><div class="card-bottom"><strong>From ₹249/hr</strong><button class="round-arrow">→</button></div></div></article>
+          <article class="service-card optional-card"><div class="image-wrap"><img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=900&q=80" alt="Dog sitting service" /><span class="tag">PET CARE</span><button class="heart" aria-label="Save service">♡</button></div><div class="service-content"><div class="card-top"><p>PETS</p><span>★ 4.9 <small>(64)</small></span></div><h3>Pet sitting & walks</h3><p>Happy companions while you’re away</p><div class="card-bottom"><strong>From ₹299</strong><button class="round-arrow">→</button></div></div></article>
+          <article class="service-card optional-card"><div class="image-wrap"><img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=900&q=80" alt="Office workspace organization" /><span class="tag coral">POPULAR</span><button class="heart" aria-label="Save service">♡</button></div><div class="service-content"><div class="card-top"><p>ORGANISING</p><span>★ 4.8 <small>(92)</small></span></div><h3>Home organisation</h3><p>Order and calm, room by room</p><div class="card-bottom"><strong>From ₹799</strong><button class="round-arrow">→</button></div></div></article>
+          <article class="service-card optional-card"><div class="image-wrap"><img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80" alt="Laptop repair service" /><span class="tag amber">SAME DAY</span><button class="heart" aria-label="Save service">♡</button></div><div class="service-content"><div class="card-top"><p>TECH HELP</p><span>★ 4.9 <small>(128)</small></span></div><h3>Laptop & Wi-Fi help</h3><p>Tech troubles, clearly solved</p><div class="card-bottom"><strong>From ₹399</strong><button class="round-arrow">→</button></div></div></article>
+          <article class="service-card optional-card"><div class="image-wrap"><img src="https://images.unsplash.com/photo-1488926756850-a13b25e2f415?auto=format&fit=crop&w=900&q=80" alt="Garden maintenance" /><span class="tag">OUTDOOR</span><button class="heart" aria-label="Save service">♡</button></div><div class="service-content"><div class="card-top"><p>GARDEN</p><span>★ 4.8 <small>(58)</small></span></div><h3>Garden care</h3><p>A little greener, every weekend</p><div class="card-bottom"><strong>From ₹599</strong><button class="round-arrow">→</button></div></div></article>
+          <article class="service-card optional-card"><div class="image-wrap"><img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=900&q=80" alt="Appliance repair technician" /><span class="tag coral">EXPERT PROS</span><button class="heart" aria-label="Save service">♡</button></div><div class="service-content"><div class="card-top"><p>APPLIANCES</p><span>★ 4.9 <small>(184)</small></span></div><h3>Appliance care &amp; repair</h3><p>AC, fridge &amp; washing machines</p><div class="card-bottom"><strong>From ₹399</strong><button class="round-arrow" aria-label="View appliance care">→</button></div></div></article>
+          <article class="service-card optional-card"><div class="image-wrap"><img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=900&q=80" alt="Home wall painter" /><span class="tag amber">POPULAR</span><button class="heart" aria-label="Save service">♡</button></div><div class="service-content"><div class="card-top"><p>PAINTING</p><span>★ 4.9 <small>(142)</small></span></div><h3>Painting &amp; waterproofing</h3><p>Flawless coats &amp; damp solutions</p><div class="card-bottom"><strong>From ₹999</strong><button class="round-arrow" aria-label="View painting services">→</button></div></div></article>
+          <article class="service-card optional-card"><div class="image-wrap"><img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=900&q=80" alt="Personal fitness coach" /><span class="tag">CERTIFIED</span><button class="heart" aria-label="Save service">♡</button></div><div class="service-content"><div class="card-top"><p>FITNESS</p><span>★ 5.0 <small>(96)</small></span></div><h3>Fitness &amp; yoga coaching</h3><p>Personal training at your home</p><div class="card-bottom"><strong>From ₹799/session</strong><button class="round-arrow" aria-label="View fitness coaching">→</button></div></div></article>
+          <article class="service-card optional-card"><div class="image-wrap"><img src="https://images.unsplash.com/photo-1601362840469-51e4d8d58785?auto=format&fit=crop&w=900&q=80" alt="Car detailing specialist" /><span class="tag coral">DOORSTEP</span><button class="heart" aria-label="Save service">♡</button></div><div class="service-content"><div class="card-top"><p>AUTO CARE</p><span>★ 4.8 <small>(115)</small></span></div><h3>Car detailing &amp; eco wash</h3><p>Interior deep clean &amp; exterior polish</p><div class="card-bottom"><strong>From ₹449</strong><button class="round-arrow" aria-label="View car detailing">→</button></div></div></article>
+          <article class="service-card optional-card"><div class="image-wrap"><img src="https://images.unsplash.com/photo-1628177142898-93e36e4e3a50?auto=format&fit=crop&w=900&q=80" alt="Pest control and disinfection expert" /><span class="tag amber">SAFE &amp; HERBAL</span><button class="heart" aria-label="Save service">♡</button></div><div class="service-content"><div class="card-top"><p>HOME SAFETY</p><span>★ 4.9 <small>(167)</small></span></div><h3>Pest control &amp; sanitization</h3><p>Odorless, pet-safe treatments</p><div class="card-bottom"><strong>From ₹549</strong><button class="round-arrow" aria-label="View pest control">→</button></div></div></article>
+          <article class="service-card optional-card"><div class="image-wrap"><img src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&w=900&q=80" alt="Senior companion and care provider" /><span class="tag">VERIFIED CARE</span><button class="heart" aria-label="Save service">♡</button></div><div class="service-content"><div class="card-top"><p>ASSISTANCE</p><span>★ 5.0 <small>(83)</small></span></div><h3>Senior care &amp; assistance</h3><p>Gentle support &amp; daily errands</p><div class="card-bottom"><strong>From ₹349/hr</strong><button class="round-arrow" aria-label="View senior care">→</button></div></div></article>
+        </div>
+        <div class="services-action-wrap">
+          <a class="button button-dark view-more-services" href="auth.html?role=customer&mode=signin">View more services <b>→</b></a>
+        </div>
+      </div>
+      </section>
+
+      <section class="worker-cta-section shell" id="become-worker">
+        <div class="worker-cta-card">
+          <div class="worker-cta-content">
+            <p class="eyebrow"><span></span> WORK ON YOUR OWN TERMS</p>
+            <h2>Want to start as a <em>Gig Worker?</em></h2>
+            <p class="worker-cta-subtitle">Join our platform, start earning effortlessly, and build your career on your own terms.</p>
+            <div class="worker-perks">
+              <div class="perk-item">
+                <span class="perk-badge">✓</span>
+                <div>
+                  <strong>Keep 100% of your tips</strong>
+                  <small>Transparent pricing & same-day payouts</small>
+                </div>
+              </div>
+              <div class="perk-item">
+                <span class="perk-badge">⌖</span>
+                <div>
+                  <strong>Work near your home</strong>
+                  <small>Choose gigs in your preferred localities</small>
+                </div>
+              </div>
+              <div class="perk-item">
+                <span class="perk-badge">✦</span>
+                <div>
+                  <strong>Set your own schedule</strong>
+                  <small>Full-time, weekends or part-time hours</small>
+                </div>
+              </div>
+            </div>
+            <div class="worker-cta-actions">
+              <a class="button button-orange" href="auth.html?role=worker">Join as a Gig Worker <b>→</b></a>
+              <a class="button button-light" href="terms.html">Learn how it works <b>↗</b></a>
+            </div>
+          </div>
+          <div class="worker-cta-visual" aria-label="Gig worker earnings, trust and cooperation">
+            <div class="worker-coop-card">
+              <div class="worker-doodle-container">
+                <svg class="worker-doodle-svg" viewBox="0 0 380 148" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Skilled gig workers collaborating with mutual trust and cooperation">
+                  <defs>
+                    <linearGradient id="coop-badge-grad" x1="160" y1="20" x2="220" y2="90" gradientUnits="userSpaceOnUse">
+                      <stop offset="0%" stop-color="#fff9f0"/>
+                      <stop offset="100%" stop-color="#fce8d2"/>
+                    </linearGradient>
+                    <linearGradient id="trust-ring" x1="160" y1="20" x2="220" y2="85" gradientUnits="userSpaceOnUse">
+                      <stop offset="0%" stop-color="#f59e0b"/>
+                      <stop offset="100%" stop-color="#e56d24"/>
+                    </linearGradient>
+                    <filter id="doodle-shadow" x="150" y="15" width="80" height="85" filterUnits="userSpaceOnUse">
+                      <feDropShadow dx="0" dy="3" stdDeviation="3.5" flood-color="#804a1b" flood-opacity="0.1"/>
+                    </filter>
+                  </defs>
+
+                  <!-- Background Soft Doodle Accents -->
+                  <circle cx="190" cy="52" r="50" fill="#faeedd" fill-opacity="0.55"/>
+                  <path d="M45 40 Q50 33 58 37" stroke="#f2b84b" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M335 36 Q345 30 340 43" stroke="#f2b84b" stroke-width="2" stroke-linecap="round"/>
+                  <path d="M120 25 C140 18 160 22 175 25" stroke="#e6cbb2" stroke-width="1.8" stroke-dasharray="3 3"/>
+                  <path d="M205 25 C220 22 240 18 260 25" stroke="#e6cbb2" stroke-width="1.8" stroke-dasharray="3 3"/>
+
+                  <!-- WORKER 1 (Left): Artisan / Repair Specialist -->
+                  <g class="doodle-worker-1">
+                    <circle cx="78" cy="62" r="17" fill="#fffdf8" stroke="#25231f" stroke-width="2"/>
+                    <path d="M63 56 C65 48 76 45 92 48 C96 49 104 53 103 56 Z" fill="#e56d24" stroke="#25231f" stroke-width="2" stroke-linejoin="round"/>
+                    <path d="M92 48 L108 51 C111 52 110 55 103 56" fill="#c65316" stroke="#25231f" stroke-width="1.8"/>
+                    <circle cx="85" cy="61" r="1.8" fill="#25231f"/>
+                    <path d="M81 67 Q86 72 90 67" stroke="#25231f" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+                    <ellipse cx="89" cy="65" rx="2.5" ry="1.5" fill="#f8b486" fill-opacity="0.6"/>
+                    <path d="M66 84 C66 79 72 77 78 77 C84 77 90 79 90 84 L93 126 C93 128 63 128 63 126 Z" fill="#f6f1e8" stroke="#25231f" stroke-width="2"/>
+                    <path d="M72 79 L72 100 M84 79 L84 100" stroke="#c65316" stroke-width="2"/>
+                    <rect x="73" y="94" width="10" height="9" rx="2" fill="#fff" stroke="#25231f" stroke-width="1.5"/>
+                    <path d="M78 90 L78 94" stroke="#25231f" stroke-width="1.8" stroke-linecap="round"/>
+                    <path d="M88 83 C102 85 118 84 135 77" stroke="#25231f" stroke-width="3" stroke-linecap="round" fill="none"/>
+                    <path d="M88 83 C102 85 118 84 135 77" stroke="#f6f1e8" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+                    <path d="M66 85 C58 92 53 100 56 107" stroke="#25231f" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+                    <path d="M52 105 L58 114 M50 106 L53 103 C55 101 58 103 57 106 Z" fill="#f2b84b" stroke="#25231f" stroke-width="1.5"/>
+                  </g>
+
+                  <!-- WORKER 2 (Right): Educator / Tech & Design Pro -->
+                  <g class="doodle-worker-2">
+                    <circle cx="302" cy="62" r="17" fill="#fffdf8" stroke="#25231f" stroke-width="2"/>
+                    <path d="M287 60 C288 47 300 44 316 48 C320 54 319 63 318 66 C314 62 312 60 307 60 C298 60 293 64 287 60 Z" fill="#25231f"/>
+                    <circle cx="316" cy="46" r="6" fill="#25231f"/>
+                    <rect x="290" y="58" width="8" height="6" rx="2" stroke="#25231f" stroke-width="1.5" fill="none"/>
+                    <rect x="301" y="58" width="8" height="6" rx="2" stroke="#25231f" stroke-width="1.5" fill="none"/>
+                    <path d="M298 61 L301 61" stroke="#25231f" stroke-width="1.5"/>
+                    <path d="M294 68 Q299 72 304 68" stroke="#25231f" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+                    <path d="M289 84 C289 78 296 77 302 77 C308 77 315 78 315 84 L318 126 C318 128 286 128 286 126 Z" fill="#f7f1e8" stroke="#25231f" stroke-width="2"/>
+                    <path d="M297 77 L302 83 L307 77" stroke="#e56d24" stroke-width="2" fill="none"/>
+                    <path d="M291 83 C276 85 260 84 245 77" stroke="#25231f" stroke-width="3" stroke-linecap="round" fill="none"/>
+                    <path d="M291 83 C276 85 260 84 245 77" stroke="#f7f1e8" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+                    <path d="M315 85 C323 93 327 101 324 108" stroke="#25231f" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+                    <rect x="320" y="98" width="14" height="18" rx="2" fill="#fff" stroke="#25231f" stroke-width="1.5" transform="rotate(-12 320 98)"/>
+                    <line x1="324" y1="105" x2="330" y2="103" stroke="#e56d24" stroke-width="1.5"/>
+                  </g>
+
+                  <!-- WORKER 3 (Center-Back): Community Specialist -->
+                  <g class="doodle-worker-3">
+                    <circle cx="190" cy="36" r="13" fill="#fffdf8" stroke="#25231f" stroke-width="1.8"/>
+                    <path d="M178 35 C179 26 189 23 201 26 C203 31 202 36 200 38 C197 34 193 33 190 33 C184 33 181 36 178 35 Z" fill="#9d5d8f"/>
+                    <circle cx="186" cy="36" r="1.5" fill="#25231f"/>
+                    <circle cx="194" cy="36" r="1.5" fill="#25231f"/>
+                    <path d="M187 41 Q190 44 193 41" stroke="#25231f" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+                    <path d="M213 32 L213 24 C213 22 216 22 216 24 L216 29 M211 29 L217 29 C219 29 220 31 219 33 L217 37 C215 39 212 39 210 37 Z" fill="#f8d878" stroke="#25231f" stroke-width="1.4"/>
+                  </g>
+
+                  <!-- CENTRAL EMBLEM: Symbol of Trust, Cooperation & Mutual Respect -->
+                  <g class="trust-coop-symbol" filter="url(#doodle-shadow)">
+                    <circle cx="190" cy="74" r="32" fill="url(#coop-badge-grad)" stroke="url(#trust-ring)" stroke-width="2.5"/>
+                    <circle cx="190" cy="74" r="28" stroke="#f4b759" stroke-width="1.2" stroke-dasharray="3 2" fill="none"/>
+                    <path d="M190 49 C188 46 184 46 182 49 C180 52 182 56 190 61 C198 56 200 52 198 49 C196 46 192 46 190 49 Z" fill="#e56d24"/>
+                    <!-- Handshake Doodle -->
+                    <path d="M168 76 L178 72 C181 71 184 73 186 75 L191 80" stroke="#25231f" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                    <path d="M171 81 L180 77 C182 76 185 77 187 79 L192 84" stroke="#25231f" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+                    <path d="M212 76 L202 72 C199 71 196 73 194 75 L189 80" stroke="#25231f" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                    <path d="M209 81 L200 77 C198 76 195 77 193 79 L188 84" stroke="#25231f" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+                    <rect x="184" y="73" width="12" height="12" rx="3" fill="#f8d878" stroke="#25231f" stroke-width="1.8"/>
+                    <path d="M187 77 L193 77 M187 81 L193 81" stroke="#c65316" stroke-width="1.5" stroke-linecap="round"/>
+                  </g>
+
+                  <!-- Sparkles -->
+                  <path d="M142 56 L144 50 L146 56 L152 58 L146 60 L144 66 L142 60 L136 58 Z" fill="#f59e0b"/>
+                  <path d="M234 52 L236 47 L238 52 L243 54 L238 56 L236 61 L234 56 L229 54 Z" fill="#f59e0b"/>
+                  <circle cx="152" cy="74" r="2" fill="#e56d24"/>
+                  <circle cx="228" cy="74" r="2" fill="#e56d24"/>
+
+                  <!-- Ribbon Badge -->
+                  <g class="coop-ribbon">
+                    <rect x="110" y="117" width="160" height="22" rx="11" fill="#25231f"/>
+                    <text x="190" y="132" font-family="'DM Sans', sans-serif" font-size="10.5" font-weight="700" fill="#fff" text-anchor="middle" letter-spacing="0.5">TRUST &amp; COOPERATION</text>
+                  </g>
+                </svg>
+
+                <div class="doodle-badge-row">
+                  <span><i style="color:var(--orange)">✦</i> United Gig Community</span>
+                  <span><i style="color:#2e7d32">✓</i> 100% ID Verified &amp; Protected</span>
+                </div>
+              </div>
+
+              <div class="earnings-header">
+                <span class="earnings-tag">EARNINGS &amp; COOPERATION</span>
+                <span class="earnings-badge">100% Tips Kept</span>
+              </div>
+              <div class="earnings-amount">
+                <strong>₹35,000–₹65,000</strong>
+                <small>/ month (transparent earnings &amp; direct payouts)</small>
+              </div>
+              <div class="earnings-payout-row">
+                <div class="payout-stat">
+                  <b>⚡ Same-day</b>
+                  <span>Direct bank payouts</span>
+                </div>
+                <div class="payout-stat">
+                  <b>🤝 99.4%</b>
+                  <span>Worker trust &amp; satisfaction</span>
+                </div>
+              </div>
+              <div class="worker-trust-row">
+                <div class="worker-avatars">
+                  <span>AM</span><span>NK</span><span>KB</span><span>+</span>
+                </div>
+                <p><strong>Over 3,200+ local professionals</strong><br />growing together in mutual trust</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="feature-grid shell" id="request">
+        <article class="request-card"><div><p class="eyebrow"><span></span> YOUR REQUEST, YOUR WAY</p><h2>Need something <em>specific?</em></h2><p>Tell us what you need and your ideal budget. Great local people will come to you.</p><a class="button button-orange" href="auth.html?role=customer">Request a gig <b>→</b></a></div><div class="request-illustration"><span class="scribble">✳</span><div class="request-note"><span>NEW REQUEST</span><strong>Help me move<br />this Saturday</strong><small>₹1,500 budget · 3 replies</small></div><div class="reply-bubble">✦ <b>3 pros are interested</b></div></div></article>
+        <aside class="trust-card" id="how-it-works"><span class="shield">✦</span><p class="eyebrow">THE HUSTLE PROMISE</p><h3>Good people. Great work. No guesswork.</h3><ul><li><b>✓</b> ID-verified professionals</li><li><b>✓</b> Transparent, upfront prices</li><li><b>✓</b> Support when you need it</li></ul><a href="terms.html#terms-safety" class="text-link">How we keep you safe <span>→</span></a></aside>
+      </section>
+
+      <section class="workers shell"><div class="section-heading"><div><p class="eyebrow">MEET OUR EXPERTS</p><h2>People who love what they do</h2><p class="section-subtitle">Trusted, highly-rated professionals in your area.</p></div><a href="auth.html?role=customer&mode=signin" class="text-link">Browse professionals <span>→</span></a></div>
+      <div class="worker-grid">
+        <a class="worker-card" href="auth.html?role=customer&mode=signin" aria-label="View Arjun Mehta profile"><img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=500&q=80" alt="Arjun Mehta" /><div><div class="worker-name"><h3>Arjun Mehta</h3><span>✓</span></div><p>Home repair specialist</p><div class="worker-meta"><b>★ 4.98</b><span>·</span><span>142 jobs</span></div></div><button class="round-arrow" type="button" aria-label="View Arjun's profile" tabindex="-1">→</button></a>
+        <a class="worker-card" href="auth.html?role=customer&mode=signin" aria-label="View Naina Kapoor profile"><img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=500&q=80" alt="Naina Kapoor" /><div><div class="worker-name"><h3>Naina Kapoor</h3><span>✓</span></div><p>Makeup artist & stylist</p><div class="worker-meta"><b>★ 4.96</b><span>·</span><span>88 jobs</span></div></div><button class="round-arrow" type="button" aria-label="View Naina's profile" tabindex="-1">→</button></a>
+        <a class="worker-card" href="auth.html?role=customer&mode=signin" aria-label="View Karan Bhat profile"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=500&q=80" alt="Karan Bhat" /><div><div class="worker-name"><h3>Karan Bhat</h3><span>✓</span></div><p>Maths & science tutor</p><div class="worker-meta"><b>★ 5.00</b><span>·</span><span>67 jobs</span></div></div><button class="round-arrow" type="button" aria-label="View Karan's profile" tabindex="-1">→</button></a>
+      </div></section>
+
+      <section class="reviews" id="activity"><div class="shell"><div class="activity-header"><div><p class="eyebrow">LOVED LOCALLY</p><h2>Real people, lighter days</h2></div><span class="review-rating">★ 4.9 average rating · 18,500+ verified reviews</span></div></div>
+      <div class="review-rail">
+        <article class="review-card"><img src="https://i.pravatar.cc/80?img=47" alt="Priya Nair" /><div class="review-stars">★★★★★</div><p>“The plumber was at my door in under an hour. Clean work, fair price, and zero surprises.”</p><div><strong>Priya Nair <span class="verified-badge" title="Verified Customer">✓</span></strong><small>Indiranagar, Bengaluru · Plumbing</small></div></article>
+        <article class="review-card"><img src="https://i.pravatar.cc/80?img=12" alt="Kunal Shah" /><div class="review-stars">★★★★★</div><p>“Found a brilliant maths tutor for my daughter in one evening. Her grades improved immediately.”</p><div><strong>Kunal Shah <span class="verified-badge" title="Verified Customer">✓</span></strong><small>Koramangala, Bengaluru · Tutoring</small></div></article>
+        <article class="review-card"><img src="https://i.pravatar.cc/80?img=32" alt="Ayesha Khan" /><div class="review-stars">★★★★★</div><p>“I book the same home cleaner every month. Effortless, punctual, and thoroughly dependable.”</p><div><strong>Ayesha Khan <span class="verified-badge" title="Verified Customer">✓</span></strong><small>HSR Layout, Bengaluru · Home Care</small></div></article>
+        <article class="review-card"><img src="https://i.pravatar.cc/80?img=5" alt="Rohan Iyer" /><div class="review-stars">★★★★★</div><p>“Finally, a service that respects your time. Sorted all my apartment wiring in one single visit.”</p><div><strong>Rohan Iyer <span class="verified-badge" title="Verified Customer">✓</span></strong><small>Whitefield, Bengaluru · Electrical</small></div></article>
+        <article class="review-card"><img src="https://i.pravatar.cc/80?img=44" alt="Meera Joshi" /><div class="review-stars">★★★★★</div><p>“Our babysitter was warm, skilled and thoroughly verified. Such peace of mind for working parents.”</p><div><strong>Meera Joshi <span class="verified-badge" title="Verified Customer">✓</span></strong><small>Jayanagar, Bengaluru · Childcare</small></div></article>
+        <article class="review-card"><img src="https://i.pravatar.cc/80?img=25" alt="Ananya Deshmukh" /><div class="review-stars">★★★★★</div><p>“The at-home therapeutic massage was pure bliss after a long week. Top-tier professional setup.”</p><div><strong>Ananya Deshmukh <span class="verified-badge" title="Verified Customer">✓</span></strong><small>Bandra West, Mumbai · Wellness</small></div></article>
+        <article class="review-card"><img src="https://i.pravatar.cc/80?img=68" alt="Vikramaditya Sen" /><div class="review-stars">★★★★★</div><p>“Laptop crashed right before an investor pitch. An expert tech arrived in 35 mins and restored it.”</p><div><strong>Vikramaditya Sen <span class="verified-badge" title="Verified Customer">✓</span></strong><small>Cyber City, Gurugram · Tech Help</small></div></article>
+        <article class="review-card"><img src="https://i.pravatar.cc/80?img=36" alt="Sunita Reddy" /><div class="review-stars">★★★★★</div><p>“Our golden retriever loves the daily walking pro! Photo updates and route tracking keep us relaxed.”</p><div><strong>Sunita Reddy <span class="verified-badge" title="Verified Customer">✓</span></strong><small>Jubilee Hills, Hyderabad · Pet Care</small></div></article>
+        <article class="review-card"><img src="https://i.pravatar.cc/80?img=53" alt="Kabir Malhotra" /><div class="review-stars">★★★★★</div><p>“Moved our whole 2-BHK flat without a single scratch. Upfront quotation, no sudden extra fees.”</p><div><strong>Kabir Malhotra <span class="verified-badge" title="Verified Customer">✓</span></strong><small>Hauz Khas, New Delhi · Moving</small></div></article>
+        <article class="review-card"><img src="https://i.pravatar.cc/80?img=49" alt="Sneha Kulkarni" /><div class="review-stars">★★★★★</div><p>“Assembled two custom modular wardrobes and bookshelf in one afternoon. Solid craftsmanship!”</p><div><strong>Sneha Kulkarni <span class="verified-badge" title="Verified Customer">✓</span></strong><small>Kothrud, Pune · Carpentry</small></div></article>
+        <article class="review-card"><img src="https://i.pravatar.cc/80?img=60" alt="Devendra Verma" /><div class="review-stars">★★★★★</div><p>“Quick response for kitchen leaks and balcony fixtures. Polite technician and spotless cleanup.”</p><div><strong>Devendra Verma <span class="verified-badge" title="Verified Customer">✓</span></strong><small>Salt Lake, Kolkata · Repairs</small></div></article>
+        <article class="review-card"><img src="https://i.pravatar.cc/80?img=28" alt="Pooja Sundaram" /><div class="review-stars">★★★★★</div><p>“Transformed our messy terrace into a flourishing urban garden. Expert plant care and advice.”</p><div><strong>Pooja Sundaram <span class="verified-badge" title="Verified Customer">✓</span></strong><small>Adyar, Chennai · Garden Care</small></div></article>
+        <!-- Seamless duplicate loop track -->
+        <article class="review-card" aria-hidden="true"><img src="https://i.pravatar.cc/80?img=47" alt="Priya Nair" /><div class="review-stars">★★★★★</div><p>“The plumber was at my door in under an hour. Clean work, fair price, and zero surprises.”</p><div><strong>Priya Nair <span class="verified-badge">✓</span></strong><small>Indiranagar, Bengaluru · Plumbing</small></div></article>
+        <article class="review-card" aria-hidden="true"><img src="https://i.pravatar.cc/80?img=12" alt="Kunal Shah" /><div class="review-stars">★★★★★</div><p>“Found a brilliant maths tutor for my daughter in one evening. Her grades improved immediately.”</p><div><strong>Kunal Shah <span class="verified-badge">✓</span></strong><small>Koramangala, Bengaluru · Tutoring</small></div></article>
+        <article class="review-card" aria-hidden="true"><img src="https://i.pravatar.cc/80?img=32" alt="Ayesha Khan" /><div class="review-stars">★★★★★</div><p>“I book the same home cleaner every month. Effortless, punctual, and thoroughly dependable.”</p><div><strong>Ayesha Khan <span class="verified-badge">✓</span></strong><small>HSR Layout, Bengaluru · Home Care</small></div></article>
+        <article class="review-card" aria-hidden="true"><img src="https://i.pravatar.cc/80?img=5" alt="Rohan Iyer" /><div class="review-stars">★★★★★</div><p>“Finally, a service that respects your time. Sorted all my apartment wiring in one single visit.”</p><div><strong>Rohan Iyer <span class="verified-badge">✓</span></strong><small>Whitefield, Bengaluru · Electrical</small></div></article>
+        <article class="review-card" aria-hidden="true"><img src="https://i.pravatar.cc/80?img=44" alt="Meera Joshi" /><div class="review-stars">★★★★★</div><p>“Our babysitter was warm, skilled and thoroughly verified. Such peace of mind for working parents.”</p><div><strong>Meera Joshi <span class="verified-badge">✓</span></strong><small>Jayanagar, Bengaluru · Childcare</small></div></article>
+        <article class="review-card" aria-hidden="true"><img src="https://i.pravatar.cc/80?img=25" alt="Ananya Deshmukh" /><div class="review-stars">★★★★★</div><p>“The at-home therapeutic massage was pure bliss after a long week. Top-tier professional setup.”</p><div><strong>Ananya Deshmukh <span class="verified-badge">✓</span></strong><small>Bandra West, Mumbai · Wellness</small></div></article>
+      </div></section>
+    </main>
+    <footer><div class="footer-top"><div class="footer-brand"><a class="brand" href="#top"><span class="brand-mark">h</span><span>hustle</span></a><p>More life, less to-do.</p></div><div class="footer-cta"><span>GET LOCAL HELP, FAST</span><strong>Ready to cross something off?</strong><a href="auth.html?role=customer">Find an expert <b>→</b></a></div></div><div class="footer-bottom"><div class="footer-links"><div><strong>Discover</strong><a href="#services">All services</a><a href="auth.html?role=worker">Become a worker</a><a href="auth.html?role=business">For businesses</a></div><div><strong>Hustle</strong><a href="terms.html#how-it-works">How it works</a><a href="terms.html#terms-safety">Trust & safety</a><a href="auth.html">Sign in</a></div><div><strong>Support</strong><a href="mailto:hello@hustle.local">Contact us</a><a href="#top">Help centre</a><a href="#top">Cities</a></div></div><div class="footer-social"><span>FOLLOW ALONG</span><div><a href="#top">in</a><a href="#top">ig</a><a href="#top">x</a></div></div></div>    <div class="mobile-nav"><a href="#top">⌂<span>Home</span></a><a href="#services">⌕<span>Explore</span></a><a class="mobile-request" href="#request">＋</a><a href="#activity">▣<span>Activity</span></a><a href="auth.html" id="mobile-profile-link"><svg class="profile-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.4"/><path d="M5.4 20c.8-3.3 3.2-5.1 6.6-5.1s5.8 1.8 6.6 5.1"/></svg><span id="mobile-profile-text">Sign In</span></a></div>
+
+    <script src="session.js"></script>
+    <script src="maps-config.js"></script>
+    <script src="script.js"></script>
+    <script src="booking-system.js"></script>
+  </body>
+</html>

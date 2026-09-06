@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hustle Operations · Administration Console</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="admin-dock.css" />
+    <style>
+      body.admin-portal-body {
+        background-color: var(--admin-cream);
+        color: var(--admin-ink);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+        font-family: 'DM Sans', sans-serif;
+      }
+      .admin-portal-header {
+        background: #ffffff;
+        border-bottom: 1.5px solid var(--admin-line);
+        padding: 14px 28px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+      }
+      .admin-portal-brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
+        color: var(--admin-ink);
+      }
+      .admin-portal-logo {
+        background: var(--admin-orange);
+        color: #ffffff;
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        font-family: 'Fraunces', serif;
+        font-size: 18px;
+      }
+      .admin-portal-title {
+        font-family: 'Fraunces', serif;
+        font-size: 19px;
+        font-weight: 700;
+        color: var(--admin-ink);
+      }
+      .admin-portal-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        background: #fff7ed;
+        border: 1px solid #fdba74;
+        color: #c2410c;
+        font-size: 11px;
+        font-weight: 700;
+        padding: 3px 8px;
+        border-radius: 6px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      .admin-main-wrap {
+        flex: 1;
+        max-width: 1280px;
+        width: 100%;
+        margin: 0 auto;
+        padding: 32px 24px 60px;
+        box-sizing: border-box;
+      }
+      /* Standalone Login Card */
+      .admin-login-card-wrap {
+        max-width: 440px;
+        margin: 40px auto 0;
+        background: #ffffff;
+        border: 1.5px solid var(--admin-line);
+        border-radius: 16px;
+        padding: 36px 32px;
+        box-shadow: 0 12px 32px rgba(37, 35, 31, 0.06);
+      }
+      .admin-login-card-wrap h2 {
+        font-family: 'Fraunces', serif;
+        font-size: 24px;
+        margin: 0 0 8px;
+        color: var(--admin-ink);
+      }
+      .admin-login-card-wrap p {
+        color: var(--admin-muted);
+        font-size: 13.5px;
+        margin: 0 0 24px;
+        line-height: 1.5;
+      }
+      .admin-field-group {
+        margin-bottom: 16px;
+      }
+      .admin-field-group label {
+        display: block;
+        font-size: 12px;
+        font-weight: 700;
+        color: #475569;
+        margin-bottom: 6px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      .admin-field-group input {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 11px 14px;
+        border: 1.5px solid #cbd5e1;
+        border-radius: 8px;
+        font-size: 14px;
+        background: #fff;
+        color: var(--admin-ink);
+        transition: border-color 0.2s, box-shadow 0.2s;
+      }
+      .admin-field-group input:focus {
+        outline: none;
+        border-color: var(--admin-orange);
+        box-shadow: 0 0 0 3px rgba(229, 109, 36, 0.15);
+      }
+      .btn-admin-login-submit {
+        width: 100%;
+        background: var(--admin-orange);
+        color: #ffffff;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 8px;
+        font-size: 14.5px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: background 0.2s, transform 0.1s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        box-shadow: 0 2px 8px rgba(229, 109, 36, 0.25);
+      }
+      .btn-admin-login-submit:hover {
+        background: var(--admin-orange-hover);
+      }
+      .admin-security-note {
+        margin-top: 20px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        padding: 12px 14px;
+        font-size: 12px;
+        color: #64748b;
+        line-height: 1.45;
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+      }
+      .role-rejection-banner {
+        background: #fef2f2;
+        border: 1.5px solid #fecaca;
+        color: #991b1b;
+        padding: 12px 16px;
+        border-radius: 8px;
+        font-size: 13px;
+        margin-bottom: 18px;
+        line-height: 1.4;
+      }
+      /* Dashboard panel styles */
+      .admin-dashboard-container {
+        background: #ffffff;
+        border: 1.5px solid var(--admin-line);
+        border-radius: 16px;
+        padding: 28px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+      }
+      .admin-panel-topbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 24px;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .admin-panel-topbar h1 {
+        font-family: 'Fraunces', serif;
+        font-size: 24px;
+        margin: 0 0 4px;
+        color: var(--admin-ink);
+      }
+    </style>
+  </head>
+  <body class="admin-portal-body">
+    <!-- Admin Portal Sticky Header -->
+    <header class="admin-portal-header">
+      <div class="admin-portal-brand">
+        <div class="admin-portal-logo">h</div>
+        <div>
+          <span class="admin-portal-title">hustle</span>
+          <span class="admin-portal-badge">🛡️ Staff Operations</span>
+        </div>
+      </div>
+      <div id="admin-header-user" style="display:flex; align-items:center; gap:12px;">
+        <span id="admin-auth-email-badge" style="display:none; font-size:12.5px; color:#475569; font-weight:600; background:#f1f5f9; padding:5px 12px; border-radius:20px;"></span>
+        <button type="button" class="btn-table-action hold" id="btn-admin-logout" style="display:none; padding:6px 14px; font-size:12px;">Sign Out</button>
+      </div>
+    </header>
+
+    <main class="admin-main-wrap">
+      <!-- 1. Admin Sign In View (Shown when not authenticated) -->
+      <div id="admin-login-view">
+        <div class="admin-login-card-wrap">
+          <div style="text-align:center; margin-bottom:16px;">
+            <div style="width:48px; height:48px; border-radius:12px; background:#fff7ed; border:1px solid #fdba74; color:var(--admin-orange); display:inline-flex; align-items:center; justify-content:center; font-size:24px; margin-bottom:8px;">
+              🔒
+            </div>
+            <h2>Staff Administration</h2>
+            <p>Sign in with operations staff credentials to verify workers, manage customer accounts, and settle dispute tickets.</p>
+          </div>
+
+          <div id="role-rejection-banner" class="role-rejection-banner" style="display:none;"></div>
+          <div id="admin-login-error" style="color:#dc2626; font-size:12.5px; margin-bottom:14px; background:#fef2f2; border:1px solid #fecaca; padding:8px 12px; border-radius:6px;" hidden></div>
+
+          <form id="admin-login-form">
+            <div class="admin-field-group">
+              <label for="admin-email">Admin Email</label>
+              <input type="email" id="admin-email" placeholder="Enter admin email" autocomplete="off" required />
+            </div>
+            <div class="admin-field-group">
+              <label for="admin-password">Admin Password</label>
+              <input type="password" id="admin-password" placeholder="••••••••" autocomplete="new-password" required />
+            </div>
+            <button type="submit" class="btn-admin-login-submit" id="btn-admin-login">
+              <span>Sign In to Admin Console</span>
+              <span>→</span>
+            </button>
+          </form>
+
+          <div class="admin-security-note">
+            <span>🛡️</span>
+            <div>
+              <strong>Role-Based Security:</strong> Customer and worker credentials are strictly denied entry. Staff credentials required on each login.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Admin Operations Dashboard (Shown when authenticated as admin) -->
+      <div id="admin-panel-view" hidden>
+        <div class="admin-dashboard-container">
+          <div class="admin-panel-topbar">
+            <div>
+              <h1>Platform Management &amp; Operations</h1>
+              <p style="color:var(--admin-muted); font-size:13.5px; margin:0;">
+                Inspect verified documents, oversee gig worker partners, and settle customer disputes.
+              </p>
+            </div>
+          </div>
+
+          <!-- Tab Switcher -->
+          <div class="admin-tabs-nav">
+            <button type="button" class="admin-tab-btn active" id="btn-tab-workers">
+              <span>👷 Worker Partners Queue</span>
+            </button>
+            <button type="button" class="admin-tab-btn" id="btn-tab-customers">
+              <span>👤 Customer Accounts</span>
+            </button>
+            <button type="button" class="admin-tab-btn" id="btn-tab-disputes">
+              <span>⚖️ Disputes &amp; Tickets</span>
+              <span class="admin-tab-badge" id="badge-open-disputes" style="display:none;">0</span>
+            </button>
+          </div>
+
+          <!-- TAB 1: WORKERS SECTION -->
+          <div id="admin-workers-section">
+            <div class="admin-stats-row">
+              <div class="admin-stat-chip">
+                <small>Total Worker Partners</small>
+                <strong id="stat-total-workers">0</strong>
+              </div>
+              <div class="admin-stat-chip">
+                <small>Pending Verification</small>
+                <strong id="stat-pending-workers" style="color:#d97706;">0</strong>
+              </div>
+              <div class="admin-stat-chip">
+                <small>Approved &amp; Live</small>
+                <strong id="stat-approved-workers" style="color:#059669;">0</strong>
+              </div>
+            </div>
+
+            <div class="workers-table-wrap">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Worker Partner</th>
+                    <th>Trade Category</th>
+                    <th>Experience</th>
+                    <th>Locality</th>
+                    <th>Supporting Docs</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-workers-tbody">
+                  <!-- Dynamically populated -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- TAB 2: CUSTOMERS SECTION -->
+          <div id="admin-customers-section" hidden>
+            <div class="admin-stats-row">
+              <div class="admin-stat-chip">
+                <small>Total Customer Accounts</small>
+                <strong id="stat-total-customers">0</strong>
+              </div>
+              <div class="admin-stat-chip">
+                <small>Active Bookings in Pipeline</small>
+                <strong id="stat-active-customer-bookings" style="color:#e56d24;">0</strong>
+              </div>
+            </div>
+
+            <div class="workers-table-wrap">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Customer Profile</th>
+                    <th>Contact Info</th>
+                    <th>Joined Date</th>
+                    <th>Bookings Handled</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-customers-tbody">
+                  <!-- Dynamically populated -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- TAB 3: DISPUTES & SUPPORT TICKETS SECTION -->
+          <div id="admin-disputes-section" hidden>
+            <div class="admin-stats-row">
+              <div class="admin-stat-chip">
+                <small>Total Dispute Tickets</small>
+                <strong id="stat-total-disputes">0</strong>
+              </div>
+              <div class="admin-stat-chip">
+                <small>Open / Under Review</small>
+                <strong id="stat-open-disputes" style="color:#dc2626;">0</strong>
+              </div>
+              <div class="admin-stat-chip">
+                <small>Settled &amp; Resolved</small>
+                <strong id="stat-resolved-disputes" style="color:#059669;">0</strong>
+              </div>
+            </div>
+
+            <div class="workers-table-wrap">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Ticket Ref &amp; Date</th>
+                    <th>Complainant</th>
+                    <th>Against</th>
+                    <th>Service &amp; Price</th>
+                    <th>Category &amp; Statement</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="admin-disputes-tbody">
+                  <!-- Dynamically populated -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+
+    <!-- Supporting Documents Modal -->
+    <div class="admin-doc-modal" id="admin-doc-modal" hidden style="display:none;">
+      <div class="admin-doc-card">
+        <div class="admin-doc-header">
+          <h3 id="admin-doc-modal-title"><span>📄</span> Supporting Verification Documents</h3>
+          <button type="button" class="admin-modal-close" id="btn-close-doc-modal" aria-label="Close document modal">✕</button>
+        </div>
+        <div class="admin-doc-body" id="admin-doc-body">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Admin Dispute Settlement Modal -->
+    <div class="admin-doc-modal" id="admin-dispute-modal" hidden style="display:none;">
+      <div class="admin-doc-card" style="max-width: 620px;">
+        <div class="admin-doc-header">
+          <h3 id="admin-dispute-modal-title"><span>⚖️</span> Review &amp; Settle Task Dispute</h3>
+          <button type="button" class="admin-modal-close" id="btn-close-dispute-modal" aria-label="Close dispute modal">✕</button>
+        </div>
+        <div class="admin-doc-body" id="admin-dispute-modal-body" style="padding: 22px;">
+          <!-- Populated dynamically -->
+        </div>
+      </div>
+    </div>
+
+    <script src="session.js"></script>
+    <script src="admin.js"></script>
+  </body>
+</html>
